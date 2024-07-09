@@ -815,46 +815,88 @@ void Spr0C0_SinkingLavaPlatform_Draw(uint8 k) {  // 03873a
 }
 
 void Spr0BF_MegaMole(uint8 k) {  // 038770
+  // Dibuja el Mega Mole
   Spr0BF_MegaMole_Draw(k);
+
+  // Verifica si el estado actual del sprite es activo (8)
   if (spr_current_status[k] == 8) {
+    // Mueve el sprite fuera de la pantalla si es necesario
     SubOffscreen_Bank03_Entry4(k);
+
+    // Asigna la velocidad horizontal del Mega Mole basada en su tabla de velocidad
     spr_xspeed[k] = kSpr0BF_MegaMole_MegaMoleSpeed[spr_table157c[k]];
+
+    // Verifica si los sprites no están bloqueados
     if (!flag_sprites_locked) {
+      // Verifica si el Mega Mole está en el suelo (flag 4)
       int8 v5 = spr_table1588[k] & 4;
+
+      // Maneja la gravedad normal del sprite
       HandleNormalSpriteGravity(k);
+
+      // Verifica colisiones con otros sprites normales
       CheckNormalSpriteToNormalSpriteCollision(k);
+
+      // Si el Mega Mole está en el suelo, detén su velocidad vertical
       if ((spr_table1588[k] & 4) != 0) {
         spr_yspeed[k] = 0;
       } else {
+        // Si el flag indica que estaba en el aire y ahora está en el suelo, reinicia un contador
         if (v5)
           spr_decrementing_table1540[k] = 10;
+
+        // Si el contador está activo, detén la velocidad vertical
         if (spr_decrementing_table1540[k])
           spr_yspeed[k] = 0;
       }
+
+      // Almacena un temporizador en v1
       uint8 v1 = spr_decrementing_table15ac[k];
+
+      // Verifica colisiones laterales del Mega Mole
       if ((spr_table1588[k] & 3) != 0) {
+        // Si el temporizador está inactivo, lo reinicia
         if (!v1)
           spr_decrementing_table15ac[k] = 16;
+
+        // Invierte la dirección del Mega Mole
         spr_table157c[k] ^= 1;
       }
+
+      // Si el temporizador está inactivo, actualiza la dirección del Mega Mole
       if (!v1)
         spr_table151c[k] = spr_table157c[k];
+
+      // Verifica colisiones con el jugador
       if (CheckPlayerToNormalSpriteCollision(k) & 1) {
+        // Si el jugador está por encima del Mega Mole
         if (sign8(player_ypos - GetSprYPos(k) + 40)) {
+          // Si el jugador está cayendo
           if ((player_yspeed & 0x80) == 0) {
+            // Marca que el jugador está sobre un sprite sólido
             misc_player_on_solid_sprite = 1;
+
+            // Inicia un contador en el Mega Mole
             spr_decrementing_table154c[k] = 6;
+
+            // Detiene la velocidad vertical del jugador
             player_yspeed = 0;
+
+            // Ajusta la posición vertical del jugador para estar sobre el Mega Mole
             player_ypos = GetSprYPos(k) + (player_riding_yoshi_flag ? -58 : -42);
+
+            // Ajusta la posición horizontal del jugador según el desplazamiento del sprite
             player_xpos += (int8)sprites_position_disp;
           }
         } else if (!(spr_table15d0[k] | spr_decrementing_table154c[k])) {
-          DamagePlayer_Hurt();
+          // Si el jugador no está sobre el Mega Mole y no hay un contador activo, daña al jugador
+          DamagePlayer_Hurt(GetSprXPos(k), GetSprYPos(k));
         }
       }
     }
   }
 }
+
 
 void Spr0BF_MegaMole_Draw(uint8 k) {  // 03883f
   GetDrawInfoRes drt;
@@ -1430,7 +1472,7 @@ void Spr0AE_FishinBoo_0390F3(uint8 k) {  // 0390f3
   SetHiLo(&ci.r11, &ci.r5, GetSprYPos(k) + 71);
   StandardSpriteToSpriteCollisionChecks_GetMarioClipping(&ci);
   if (StandardSpriteToSpriteCollisionChecks_CheckContact(&ci))
-    DamagePlayer_Hurt();
+    DamagePlayer_Hurt(GetSprXPos(k), GetSprYPos(k));
 }
 
 void Spr0AE_FishinBoo_Draw(uint8 k) {  // 039180
@@ -1632,7 +1674,7 @@ void Spr0AC_DownFirstWoodenSpike_039488(uint8 k) {  // 039488
       player_xpos += PAIR16(kSpr0AC_DownFirstWoodenSpike_DATA_039486[v1], kSpr0AC_DownFirstWoodenSpike_DATA_039484[v1]);
       player_xspeed = 0;
     } else {
-      DamagePlayer_Hurt();
+      DamagePlayer_Hurt(GetSprXPos(k), GetSprYPos(k));
     }
   }
 }
@@ -1707,7 +1749,7 @@ void Spr0AB_Rex(uint8 k) {  // 039517
           if (sign8(player_yspeed - 16)) {
             if (!(player_riding_yoshi_flag | timer_player_hurt)) {
               spr_table157c[k] = CheckPlayerPositionRelativeToSprite_Bank23_X(k);
-              DamagePlayer_Hurt();
+              DamagePlayer_Hurt(GetSprXPos(k), GetSprYPos(k));
             }
           } else {
             Spr0AB_Rex_RexPoints(k);
@@ -1932,7 +1974,7 @@ void Spr0A9_Reznor(uint8 k) {  // 039890
         if (!spr_decrementing_table154c[k] && CheckPlayerToNormalSpriteCollision(k)) {
           spr_decrementing_table154c[k] = 8;
           if (sign8(player_ypos - spr_ypos_lo[k] + 19)) {
-            DamagePlayer_Hurt();
+            DamagePlayer_Hurt(GetSprXPos(k), GetSprYPos(k));
           } else if (sign8(player_ypos - spr_ypos_lo[k] + 14) || (player_yspeed & 0x80) == 0) {
             player_xspeed = kSpr0A9_Reznor_ReboundSpeedX[CheckPlayerPositionRelativeToSprite_Bank23_X(k)];
           } else {
@@ -2096,7 +2138,7 @@ void Spr06F_DinoTorch2(uint8 k) {  // 039c47
         StandardSpriteToSpriteCollisionChecks_GetMarioClipping(&ci);
         if (StandardSpriteToSpriteCollisionChecks_CheckContact(&ci)) {
           if (!timer_star_power)
-            DamagePlayer_Hurt();
+            DamagePlayer_Hurt(GetSprXPos(k), GetSprYPos(k));
         }
       }
     } else {
@@ -3146,7 +3188,7 @@ void Spr0A0_ActivateBowserBattle_03B078(uint8 k) {  // 03b078
 }
 
 void Spr0A0_ActivateBowserBattle_03B0D2(uint8 k) {  // 03b0d2
-  DamagePlayer_Hurt();
+  DamagePlayer_Hurt(GetSprXPos(k), GetSprYPos(k));
   Spr0A0_ActivateBowserBattle_03B0D6(k);
 }
 
@@ -4223,7 +4265,7 @@ void Spr029_KoopaKid_WendyLemmy_State06_SinkingInLava(uint8 k) {  // 03ce89
 void Spr029_KoopaKid_WendyLemmy_CheckMarioStomp(uint8 k) {  // 03cea7
   if (CheckPlayerToNormalSpriteCollision(k) & 1) {
     if (sign8(player_yspeed - 16)) {
-      DamagePlayer_Hurt();
+      DamagePlayer_Hurt(GetSprXPos(k), GetSprYPos(k));
     } else {
       SpawnContactEffectFromAbove(k);
       GivePoints(k, 2);

@@ -76,7 +76,7 @@ void CloseOwPrompt(void);
 void CompressOamEntExt(void);
 void DamagePlayer_00F622(void);
 void DamagePlayer_DisableButtons(void);
-void DamagePlayer_Hurt(void);
+void DamagePlayer_Hurt(uint16 x, uint16 y);
 void DamagePlayer_Kill(void);
 void DamagePlayer_KillAndDisableButtons(void);
 void DamagePlayer_PitFall(void);

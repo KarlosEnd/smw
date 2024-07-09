@@ -1268,7 +1268,7 @@ void MExtSpr0A_BooStream(uint8 k) {  // 028cc4
     ci.r7 = 8;
     StandardSpriteToSpriteCollisionChecks_GetMarioClipping(&ci);
     if (StandardSpriteToSpriteCollisionChecks_CheckContact(&ci))
-      DamagePlayer_Hurt();
+      DamagePlayer_Hurt(GetSprXPos(k), GetSprYPos(k));
     if (mextspr_timer[k]-- == 1)
       goto LABEL_9;
   }
@@ -2797,7 +2797,7 @@ void CheckMarioToExtendedSpriteColl_02A469(uint8 k) {  // 02a469
   } else if (player_riding_yoshi_flag) {
     CheckMarioToExtendedSpriteColl_LoseYoshi();
   } else {
-    DamagePlayer_Hurt();
+    DamagePlayer_Hurt(GetSprXPos(k), GetSprYPos(k));
   }
 }
 
@@ -4940,7 +4940,7 @@ LABEL_5:
         player_xspeed = kSpr091_CharginChuck_StompKnockbackXSpeed[CheckPlayerPositionRelativeToSprite_Bank23_X(k)];
       }
     } else if (!player_riding_yoshi_flag) {
-      DamagePlayer_Hurt();
+      DamagePlayer_Hurt(GetSprXPos(k), GetSprYPos(k));
     }
   }
 }
@@ -5634,7 +5634,7 @@ void Spr089_Layer3Smasher_02D49C(uint8 k) {  // 02d49c
       } else if (player_in_air_flag) {
         player_yspeed = ((spr_yspeed[k] & 0x80) == 0) ? spr_yspeed[k] : 0;
       } else {
-        DamagePlayer_Hurt();
+        DamagePlayer_Hurt(GetSprXPos(k), GetSprYPos(k));
       }
     }
   }
@@ -7409,7 +7409,7 @@ void Spr086_Wiggler(uint8 k) {  // 02f035
           if (!(HIBYTE(player_on_screen_pos_y) | spr_decrementing_table154c[v17])) {
             spr_decrementing_table154c[v17] = 8;
             if (!counter_consecutive_enemies_stomped && sign8(player_yspeed - 8)) {
-              DamagePlayer_Hurt();
+              DamagePlayer_Hurt(GetSprXPos(k), GetSprYPos(k));
             } else {
               io_sound_ch1 = 3;
               BoostMarioSpeed();
@@ -7852,7 +7852,7 @@ void ClusterSpr06_SumoBroFlame_02F9F5() {  // 02f9f5
   if (player_riding_yoshi_flag)
     CheckMarioToExtendedSpriteColl_LoseYoshi();
   else
-    DamagePlayer_Hurt();
+    DamagePlayer_Hurt(0,0);
 }
 
 void ClusterSpr05_CandleFlame(uint8 k) {  // 02fa16

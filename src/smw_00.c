@@ -4,49 +4,52 @@
 #include "variables.h"
 #include "assets/smw_assets.h"
 
+// Definición de un arreglo estático de punteros a funciones, con un tamaño de 42 elementos
+// Cada elemento del arreglo apunta a una función que maneja un modo de juego específico
+// El prefijo 'k' en el nombre de la variable indica que es una constante (convención de nomenclatura)
 static FuncV *const kInitAndMainLoop_GameModePtrs[42] = {
-    &GameMode00_LoadNintendoPresents,
-    &GameMode01_ShowNintendoPresents,
-    &GameModeXX_FadeInOrOut,
-    &GameMode11_LoadSublevel_GameMode03Entry,
-    &GameMode04_PrepareTitleScreen,
-    &GameModeXX_FadeInOrOut,
-    &GameMode06_CircleEffect,
-    &GameMode07_TitleScreenDemo,
-    &GameMode08_FileSelect,
-    &GameMode09_EraseFile,
-    &GameMode0A_PlayerSelect,
-    &GameModeXX_FadeInOrOut,
-    &GameMode0C_LoadOverworld,
-    &GameModeXX_FadeInOrOut,
-    &GameMode0E_ShowOverworld,
-    &GameModeXX_FadeInOrOut_MosaicFade,
-    &GameMode10_BufferLevelLoadMessage,
-    &GameMode11_LoadSublevel_0096D5,
-    &GameMode12_PrepareLevel,
-    &GameModeXX_FadeInOrOut_MosaicFade,
-    &GameMode14_InLevel,
-    &GameModeXX_FadeInOrOut,
-    &GameMode16_LoadDeathMessage,
-    &GameMode17_ShowDeathMessage,
-    &GameModeXX_FadeInOrOut,
-    &GameMode19_Cutscene,
-    &GameModeXX_FadeInOrOut,
-    &GameMode19_Cutscene_GameMode1BEntry,
-    &GameModeXX_FadeInOrOut,
-    &GameMode1D_LoadYoshisHouse,
-    &GameModeXX_FadeInOrOut,
-    &GameMode1D_LoadYoshisHouse_GameMode1FEntry,
-    &GameModeXX_FadeInOrOut,
-    &GameMode21_DelayEnemyRollcall,
-    &GameModeXX_FadeInOrOut,
-    &GameMode23_LoadEnemyRollcallScreen,
-    &GameModeXX_FadeInOrOut,
-    &GameMode25_ShowEnemyRollcallScreen,
-    &GameModeXX_FadeInOrOut,
-    &GameMode27_LoadTheEnd,
-    &GameMode28_ShowTheEnd,
-    &GameMode29_DoNothingOnTheEndScreen,
+    &GameMode00_LoadNintendoPresents,             // 00: Cargar pantalla de "Nintendo Presents"
+    &GameMode01_ShowNintendoPresents,             // 01: Mostrar pantalla de "Nintendo Presents"
+    &GameModeXX_FadeInOrOut,                      // XX: Fundido de entrada o salida
+    &GameMode11_LoadSublevel_GameMode03Entry,     // 11: Cargar subnivel, entrada del modo 03
+    &GameMode04_PrepareTitleScreen,               // 04: Preparar pantalla de título
+    &GameModeXX_FadeInOrOut,                      // XX: Fundido de entrada o salida
+    &GameMode06_CircleEffect,                     // 06: Efecto de círculo
+    &GameMode07_TitleScreenDemo,                  // 07: Demo de pantalla de título
+    &GameMode08_FileSelect,                       // 08: Selección de archivo
+    &GameMode09_EraseFile,                        // 09: Borrar archivo
+    &GameMode0A_PlayerSelect,                     // 0A: Selección de jugador
+    &GameModeXX_FadeInOrOut,                      // XX: Fundido de entrada o salida
+    &GameMode0C_LoadOverworld,                    // 0C: Cargar mapa general
+    &GameModeXX_FadeInOrOut,                      // XX: Fundido de entrada o salida
+    &GameMode0E_ShowOverworld,                    // 0E: Mostrar mapa general
+    &GameModeXX_FadeInOrOut_MosaicFade,           // XX: Fundido de entrada o salida con efecto de mosaico
+    &GameMode10_BufferLevelLoadMessage,           // 10: Almacenar mensaje de carga del nivel
+    &GameMode11_LoadSublevel_0096D5,              // 11: Cargar subnivel, dirección 0096D5
+    &GameMode12_PrepareLevel,                     // 12: Preparar nivel
+    &GameModeXX_FadeInOrOut_MosaicFade,           // XX: Fundido de entrada o salida con efecto de mosaico
+    &GameMode14_InLevel,                          // 14: Dentro del nivel
+    &GameModeXX_FadeInOrOut,                      // XX: Fundido de entrada o salida
+    &GameMode16_LoadDeathMessage,                 // 16: Cargar mensaje de muerte
+    &GameMode17_ShowDeathMessage,                 // 17: Mostrar mensaje de muerte
+    &GameModeXX_FadeInOrOut,                      // XX: Fundido de entrada o salida
+    &GameMode19_Cutscene,                         // 19: Escena cinemática
+    &GameModeXX_FadeInOrOut,                      // XX: Fundido de entrada o salida
+    &GameMode19_Cutscene_GameMode1BEntry,         // 19: Escena cinemática, entrada del modo 1B
+    &GameModeXX_FadeInOrOut,                      // XX: Fundido de entrada o salida
+    &GameMode1D_LoadYoshisHouse,                  // 1D: Cargar casa de Yoshi
+    &GameModeXX_FadeInOrOut,                      // XX: Fundido de entrada o salida
+    &GameMode1D_LoadYoshisHouse_GameMode1FEntry,  // 1D: Cargar casa de Yoshi, entrada del modo 1F
+    &GameModeXX_FadeInOrOut,                      // XX: Fundido de entrada o salida
+    &GameMode21_DelayEnemyRollcall,               // 21: Retrasar presentación de enemigos
+    &GameModeXX_FadeInOrOut,                      // XX: Fundido de entrada o salida
+    &GameMode23_LoadEnemyRollcallScreen,          // 23: Cargar pantalla de presentación de enemigos
+    &GameModeXX_FadeInOrOut,                      // XX: Fundido de entrada o salida
+    &GameMode25_ShowEnemyRollcallScreen,          // 25: Mostrar pantalla de presentación de enemigos
+    &GameModeXX_FadeInOrOut,                      // XX: Fundido de entrada o salida
+    &GameMode27_LoadTheEnd,                       // 27: Cargar pantalla de "The End"
+    &GameMode28_ShowTheEnd,                       // 28: Mostrar pantalla de "The End"
+    &GameMode29_DoNothingOnTheEndScreen,          // 29: No hacer nada en la pantalla de "The End"
 };
 
 typedef void TileGenFunc(GenTileArgs *gta);
@@ -326,12 +329,27 @@ void SmwVectorReset() {
   ++waiting_for_vblank;
 }
 
+// Función principal para ejecutar un fotograma del juego Super Mario World
 void SmwRunOneFrameOfGame_Internal() {
+  // Verifica que el juego está esperando el periodo de vblank (Vertical Blank)
+  // El periodo de vblank es un momento en el que la pantalla no está siendo dibujada,
+  // lo cual es útil para realizar ciertas operaciones sin causar parpadeos o artefactos.
   assert(waiting_for_vblank != 0);
+
+  // Incrementa el contador global de fotogramas
+  // Este contador puede ser usado para rastrear el tiempo de juego o para otros fines
   ++counter_global_frames;
+
+  // Inicializa y procesa el modo de juego actual
+  // Esta función probablemente contiene la lógica principal del juego,
+  // como actualizar la posición de los personajes, manejar la física del juego, etc.
   InitAndMainLoop_ProcessGameMode();
+
+  // Indica que el juego ya no está esperando el periodo de vblank
+  // Esto puede permitir que otras partes del código sepan que pueden proceder con sus operaciones
   waiting_for_vblank = 0;
 }
+
 
 void ResetSpritesFunc(int wh) {
   for (; wh < 128; wh++)
@@ -572,27 +590,65 @@ void ClearLayer3Tilemap() {  // 0085fa
   UploadOAMBuffer();
 }
 
-void PollJoypadInputs() {  // 008650
+void PollJoypadInputs() {  // Función para leer los inputs del joypad
+  // Leer el estado bajo del primer controlador y filtrar los bits superiores
   io_controller_hold2_copyp1 = ReadReg(JOY1L) & 0xF0;
+
+  // Calcular qué botones se están presionando en el primer controlador
   io_controller_press2_copyp1 = io_controller_hold2_copyp1 & (io_p1_ctrl_disable_hi ^ io_controller_hold2_copyp1);
+
+  // Guardar el estado alto del primer controlador para deshabilitarlos posteriormente
   io_p1_ctrl_disable_hi = io_controller_hold2_copyp1;
+
+  // Leer el estado alto del primer controlador
   io_controller_hold1_copyp1 = ReadReg(JOY1H);
+
+  // Calcular qué botones se están presionando en el primer controlador
   io_controller_press1_copyp1 = io_controller_hold1_copyp1 & (io_p1_ctrl_disable_lo ^ io_controller_hold1_copyp1);
+
+  // Guardar el estado bajo del primer controlador para deshabilitarlos posteriormente
   io_p1_ctrl_disable_lo = io_controller_hold1_copyp1;
+
+  // Leer el estado bajo del segundo controlador y filtrar los bits superiores
   io_controller_hold2_copyp2 = ReadReg(JOY2L) & 0xF0;
+
+  // Calcular qué botones se están presionando en el segundo controlador
   io_controller_press2_copyp2 = io_controller_hold2_copyp2 & (io_p2_ctrl_disable_hi ^ io_controller_hold2_copyp2);
+
+  // Guardar el estado alto del segundo controlador para deshabilitarlos posteriormente
   io_p2_ctrl_disable_hi = io_controller_hold2_copyp2;
+
+  // Leer el estado alto del segundo controlador
   io_controller_hold1_copyp2 = ReadReg(JOY2H);
+
+  // Calcular qué botones se están presionando en el segundo controlador
   io_controller_press1_copyp2 = io_controller_hold1_copyp2 & (io_p2_ctrl_disable_lo ^ io_controller_hold1_copyp2);
+
+  // Guardar el estado bajo del segundo controlador para deshabilitarlos posteriormente
   io_p2_ctrl_disable_lo = io_controller_hold1_copyp2;
-  uint8 v0 = io_controllers_plugged_in;
-  if ((io_controllers_plugged_in & 0x80) != 0)
-    v0 = player_current_character;
-  io_controller_hold1 = *(&io_controller_hold1_copyp1 + v0) | *(&io_controller_hold2_copyp1 + v0) & 0xC0;
-  io_controller_hold2 = *(&io_controller_hold2_copyp1 + v0);
-  io_controller_press1 = *(&io_controller_press1_copyp1 + v0) | *(&io_controller_press2_copyp1 + v0) & 0x40;
-  io_controller_press2 = *(&io_controller_press2_copyp1 + v0);
+
+  // Determinar qué controlador está activo y leer los estados de los botones correspondientes
+  //uint8 v0 = io_controllers_plugged_in;
+  //if ((io_controllers_plugged_in & 0x80) != 0)
+  //  v0 = player_current_character;
+  //io_controller_hold1 = *(&io_controller_hold1_copyp1 + v0) | *(&io_controller_hold2_copyp1 + v0) & 0xC0;
+  //io_controller_hold2 = *(&io_controller_hold2_copyp1 + v0);
+  //io_controller_press1 = *(&io_controller_press1_copyp1 + v0) | *(&io_controller_press2_copyp1 + v0) & 0x40;
+  //io_controller_press2 = *(&io_controller_press2_copyp1 + v0);
+  // 
+  // Para el primer controlador
+   io_controller_hold1 = *(&io_controller_hold1_copyp1 + 0) | *(&io_controller_hold2_copyp1 + 0) & 0xC0;
+   io_controller_hold2 = *(&io_controller_hold2_copyp1 + 0);
+   io_controller_press1 = *(&io_controller_press1_copyp1 + 0) | *(&io_controller_press2_copyp1 + 0) & 0x40;
+   io_controller_press2 = *(&io_controller_press2_copyp1 + 0);
+
+   io_controller_hold1_copyp2 = *(&io_controller_hold1_copyp1 + 1) | *(&io_controller_hold2_copyp1 + 1) & 0xC0;
+   io_controller_hold2_copyp2 = *(&io_controller_hold2_copyp1 + 1);
+   io_controller_press1_copyp2 = *(&io_controller_press1_copyp1 + 1) | *(&io_controller_press2_copyp1 + 1) & 0x40;
+   io_controller_press2_copyp2 = *(&io_controller_press2_copyp1 + 1);
+
 }
+
 
 void GameMode14_InLevel_0086C7() {  // 0086c7
   for (int16 i = 98; i >= 0; i -= 2)
@@ -1009,9 +1065,17 @@ void SetEnemyRollcallParallaxHDMA() {  // 0092ed
   } while (v0 >= 0);
 }
 
-void InitAndMainLoop_ProcessGameMode() {  // 009322
+// Función que inicializa y procesa el modo de juego actual en el bucle principal
+void InitAndMainLoop_ProcessGameMode() {  // Dirección de memoria: 009322
+  // Llama a la función correspondiente al modo de juego actual
+  // `kInitAndMainLoop_GameModePtrs` es un arreglo de punteros a funciones,
+  // donde cada índice corresponde a un modo de juego diferente.
+  // `misc_game_mode` es una variable que indica el modo de juego actual.
+  // Así, `kInitAndMainLoop_GameModePtrs[misc_game_mode]()` llama a la función
+  // correspondiente para inicializar y procesar ese modo de juego.
   kInitAndMainLoop_GameModePtrs[misc_game_mode]();
 }
+
 
 void TurnOffIO() {  // 00937d
 //  WriteReg(NMITIMEN, 0);
@@ -1019,50 +1083,123 @@ void TurnOffIO() {  // 00937d
   RtlPpuWrite(INIDISP, 0x80);
 }
 
-void GameMode00_LoadNintendoPresents() {  // 009391
+// Función que carga la pantalla de "Nintendo Presents"
+void GameMode00_LoadNintendoPresents() {  // Dirección de memoria: 009391
+  // Limpia el mapa de teselas de la capa 3
   ClearLayer3Tilemap();
+
+  // Establece los ajustes estándar del PPU (Picture Processing Unit)
   SetStandardPPUSettings();
+
+  // Sube los archivos gráficos para la capa 3
   UploadGraphicsFiles_Layer3();
+
+  // Inicializa un índice para la posición en el OAM (Object Attribute Memory)
   uint8 v0 = 12;
+
+  // Bucle para configurar los sprites de la pantalla de "Nintendo Presents"
   for (uint8 i = 3; (i & 0x80) == 0; --i) {
+    // Obtiene un puntero a una entrada OAM desde el buffer oam_buf
     OamEnt *oam = get_OamEnt(oam_buf, v0);
+
+    // Configura la posición x del sprite
     oam->xpos = kGameMode00_LoadNintendoPresents_XDisp[i];
+
+    // Configura la posición y del sprite
     oam->ypos = 112;
+
+    // Configura el número de carácter del sprite (tesela gráfica)
     oam->charnum = kGameMode00_LoadNintendoPresents_Tiles[i];
+
+    // Configura los flags del sprite (probablemente relacionado con paleta y prioridad)
     oam->flags = 48;
+
+    // Decrementa v0 en 4 para apuntar al siguiente sprite
     v0 -= 4;
   }
+
+  // Configura una extensión del buffer OAM (puede ser para atributos adicionales)
   oam_buf_ext[0] = -86;
+
+  // Inicia el sonido del canal 3 (probablemente un efecto de sonido asociado)
   io_sound_ch3 = 1;
+
+  // Establece un temporizador para la entrada de la pantalla de título
   timer_title_screen_input_timer = 64;
+
+  // Llama a una función auxiliar específica de este modo de juego
   GameMode00_LoadNintendoPresents_0093CA();
 }
 
-void GameMode00_LoadNintendoPresents_0093CA() {  // 0093ca
+
+// Función auxiliar para finalizar la carga de la pantalla de "Nintendo Presents"
+void GameMode00_LoadNintendoPresents_0093CA() {  // Dirección de memoria: 0093ca
+  // Establece el registro de visualización de la pantalla
   mirror_screen_display_register = 15;
+
+  // Configura la dirección del efecto de mosaico
   misc_mosaic_direction = 1;
+
+  // Configura la paleta de sprites
   misc_sprite_palette_setting = 0;
+
+  // Rellena los búferes de paletas para los niveles
   BufferPalettesRoutines_Levels();
+
+  // Establece el color de fondo de las paletas
   palettes_background_color = 0;
+
+  // Actualiza toda la paleta gráfica
   UpdateEntirePalette();
+
+  // Inicializa la posición del cursor parpadeante
   misc_blinking_cursor_pos = 0;
+
+  // Llama a otra función auxiliar con parámetros específicos
   GameMode00_LoadNintendoPresents_0093EA(0x10, 4);
 }
 
-void GameMode00_LoadNintendoPresents_0093EA(uint8 k, uint8 j) {  // 0093ea
+
+// Función auxiliar para configurar capas visibles y actualizar el modo de juego
+void GameMode00_LoadNintendoPresents_0093EA(uint8 k, uint8 j) {  // Dirección de memoria: 0093ea
+  // Establece la bandera para el uso de NMI (Non-Maskable Interrupt)
   misc_nmito_use_flag = 1;
+
+  // Configura las capas visibles usando los parámetros proporcionados
+  // `SetVisibleLayers` es probablemente una función que activa o desactiva las capas gráficas del PPU
   SetVisibleLayers(0x20, k, j);
+
+  // Incrementa el modo de juego para avanzar al siguiente estado
   ++misc_game_mode;
 }
 
-void SetVisibleLayers(uint8 a, uint8 k, uint8 j) {  // 0093fd
+
+// Función para configurar las capas visibles del PPU (Picture Processing Unit)
+void SetVisibleLayers(uint8 a, uint8 k, uint8 j) {  // Dirección de memoria: 0093fd
+  // Escribe el valor `a` en el registro CGADSUB del PPU
+  // CGADSUB controla las operaciones de adición y sustracción de color
   RtlPpuWrite(CGADSUB, a);
+
+  // Actualiza la variable espejo que refleja la selección y habilitación de las operaciones de color
   mirror_color_math_select_and_enable = a;
+
+  // Escribe el valor `k` en el registro TM del PPU
+  // TM controla la activación de las capas en modo mosaico
   RtlPpuWrite(TM, k);
+
+  // Escribe el valor `j` en el registro TS del PPU
+  // TS controla la activación de las capas en modo de superposición
   RtlPpuWrite(TS, j);
+
+  // Escribe el valor 0 en el registro TMW del PPU
+  // TMW controla la activación de la ventana de máscaras para las capas de fondo
   RtlPpuWrite(TMW, 0);
+
+  // Escribe el valor 0 en el registro TSW del PPU
+  // TSW controla la activación de la ventana de máscaras para las capas de sprites
   RtlPpuWrite(TSW, 0);
 }
+
 
 void GameMode01_ShowNintendoPresents() {  // 00940f
   if (!--timer_title_screen_input_timer) {
@@ -1924,29 +2061,55 @@ PairU16 BufferFileSelectText_009DB5(uint8 k) {  // 009db5
   }
 }
 
-void GameMode0A_PlayerSelect() {  // 009dfa
+// Función para la selección de jugador en el modo de juego 0A
+void GameMode0A_PlayerSelect() {  // Dirección de memoria: 009dfa
   uint8 t;
+
+  // Verifica si se ha presionado un botón específico en el controlador
+  // (bit 0x40 corresponde a un botón específico en los registros de entrada del controlador)
   if (((io_controller_press2 | io_controller_press1) & 0x40) != 0) {
+    // Si se ha presionado el botón, decrementa el modo de juego
     --misc_game_mode;
+    // Llama a una función común para los modos de juego 9 y A
     Gamemode_9_A_Common();
   } else {
+    // Verifica qué controladores están conectados
     CheckWhichControllersArePluggedIn();
+
+    // Maneja el cursor del menú principal y obtiene la selección del jugador
+    // `HandleMenuCursor_Main_ReturnsTwice(4)` devuelve 0xff si no se ha realizado una selección
     if ((t = HandleMenuCursor_Main_ReturnsTwice(4)) == 0xff)
       return;
+
+    // Establece el juego en modo de dos jugadores si `t` es verdadero
     flag_two_player_game = t;
+
+    // Carga los datos guardados en el buffer
     LoadSaveBufferData();
+
+    // Carga los mapas de teselas y eventos de la capa 2 del mundo
     LoadOverworldLayer2AndEventsTilemaps();
+
+    // Llama a la entrada secundaria de la función de selección de jugador
     GameMode0A_PlayerSelect_Entry2();
   }
 }
 
-void GameMode0A_PlayerSelect_Entry2() {  // 009e17
+// Entrada secundaria para la configuración de la selección de jugador
+void GameMode0A_PlayerSelect_Entry2() {  // Dirección de memoria: 009e17
+  // Establece la música del canal 1
   io_music_ch1 = 0x80;
+
+  // Inicializa las vidas de los jugadores
   players_lives[1] = -1;
   uint8 v0 = flag_two_player_game;
+
+  // Asigna 4 vidas a cada jugador
   do
     players_lives[v0--] = 4;
   while ((v0 & 0x80) == 0);
+
+  // Inicializa las variables del jugador
   player_current_life_count = 4;
   player_current_coin_count = 0;
   yoshi_carry_over_levels_flag = 0;
@@ -1963,13 +2126,20 @@ void GameMode0A_PlayerSelect_Entry2() {  // 009e17
   player_luigi_score_hi = 0;
   misc_exit_level_action = 0;
   player_current_character = 0;
+
+  // Llama a la siguiente función para finalizar la configuración
   GameMode0A_PlayerSelect_009E62();
 }
 
-void GameMode0A_PlayerSelect_009E62() {  // 009e62
+// Función para finalizar la configuración del modo de selección de jugador
+void GameMode0A_PlayerSelect_009E62() {  // Dirección de memoria: 009e62
+  // Establece el temporizador para mantener activo el modo de juego durante un fotograma
   SetKeepGameModeActiveTimer_OneFrame();
+
+  // Cambia el modo de juego al valor 11, probablemente para avanzar al siguiente estado del juego
   misc_game_mode = 11;
 }
+
 
 void HandleMenuCursor_009E82(uint8 j) {  // 009e82
   uint8 v1 = kHandleMenuCursor_DATA_009E7E[misc_blinking_cursor_pos];
@@ -4446,15 +4616,21 @@ LABEL_6:
   UpdatePlayerSpritePosition();
 }
 
-void HandlePlayerPhysics() {  // 00d5f2
+void HandlePlayerPhysics() {  // Función para manejar la física del jugador
   uint8 v4;
   uint8 r1 = 0;
+
+  // Si el jugador no está en el aire
   if (!player_in_air_flag) {
     player_ducking_flag = 0;
+
+    // Si no está deslizando en el suelo y se presiona el botón de agacharse
     if (!player_sliding_on_ground && (io_controller_hold1 & 4) != 0) {
       player_ducking_flag = io_controller_hold1 & 4;
       flag_cape_to_sprite_interaction = 0;
     }
+
+    // Condiciones para manejar diferentes situaciones en el suelo
     if (misc_player_on_solid_sprite == 2 || (player_blocked_flags & 8) != 0 ||
         ((io_controller_press2 | io_controller_press1) & 0x80) == 0) {
       if (player_ducking_flag) {
@@ -4465,10 +4641,13 @@ void HandlePlayerPhysics() {  // 00d5f2
         goto LABEL_12;
       }
     } else {
+      // Configuración de la velocidad vertical del jugador para saltar
       uint8 v0 = player_xspeed;
       if ((player_xspeed & 0x80) != 0)
         v0 = -player_xspeed;
       uint8 v1 = (v0 >> 2) & 0xFE;
+
+      // Manejo de saltos específicos del jugador
       if ((io_controller_press2 & 0x80) == 0 || player_carrying_something_flag2) {
         io_sound_ch2 = 1;
       } else {
@@ -4480,6 +4659,8 @@ void HandlePlayerPhysics() {  // 00d5f2
         ++v1;
       }
       player_yspeed = kHandlePlayerPhysics_JumpHeightTable[v1];
+
+      // Configuración del estado "en el aire" del jugador
       uint8 v2 = 11;
       if (player_pmeter >= 0x70) {
         if (!timer_wait_before_cape_flight_begins)
@@ -4490,26 +4671,31 @@ void HandlePlayerPhysics() {  // 00d5f2
       player_sliding_on_ground = 0;
     }
   }
+
 LABEL_25:
+  // Etiqueta de manejo posterior al salto o deslizamiento en el suelo
   if ((player_sliding_on_ground & 0x80) != 0) {
 LABEL_28:
     SpawnPlayerTurnAroundSmoke();
     if (player_slope_player_is_on2) {
       HandlePlayerPhysics_UpdatePMeter();
       HandlePlayerPhysics_00D742(((player_slope_player_is_on1 & 2) != 0) + (player_slope_player_is_on1 >> 2) + 118,
-                                      ((player_slope_player_is_on1 & 4) != 0) + (player_slope_player_is_on1 >> 3) - 121);
+                                 ((player_slope_player_is_on1 & 4) != 0) + (player_slope_player_is_on1 >> 3) - 121);
       return;
     }
 LABEL_12:
     HandlePlayerPhysics_00D764();
     return;
   }
+
   if ((io_controller_hold1 & 3) == 0) {
 LABEL_27:
     if (!player_sliding_on_ground)
       goto LABEL_12;
     goto LABEL_28;
   }
+
+  // Manejo de deslizamiento en el suelo y dirección del jugador
   player_sliding_on_ground = 0;
   int8 v3 = io_controller_hold1 & 1;
   if (!player_cape_flying_phase) {
@@ -4527,6 +4713,8 @@ LABEL_39:
 LABEL_40:
     r1 = io_controller_hold1 & 1;
     v4 = player_slope_player_is_on1 | (4 * v3);
+
+    // Manejo de la dirección y aceleración del jugador
     if (player_xspeed && ((*((uint8 *)kHandlePlayerPhysics_MarioAccel + v4 + 1) ^ player_xspeed) & 0x80) != 0 &&
         !timer_player_slides_when_turing) {
       if (!flag_ice_level) {
@@ -4537,11 +4725,13 @@ LABEL_40:
     }
     goto LABEL_46;
   }
+
   if (v3 != player_facing_direction && (io_controller_press1 & 0x80) == 0)
     goto LABEL_27;
   player_slope_player_is_on1 = kHandlePlayerPhysics_DATA_00D5EE[player_facing_direction];
   r1 = io_controller_hold1 & 1;
   v4 = player_slope_player_is_on1 | (4 * v3);
+
 LABEL_46:;
   uint8 v5 = 0;
   if ((io_controller_hold1 & 0x40) == 0)
@@ -4565,14 +4755,16 @@ LABEL_54:
   v5 = HandlePlayerPhysics_UpdatePMeterEx(v5);
   HandlePlayerPhysics_00D742(v4, r1 | player_slope_player_is_on1 | (2 * v5));
 }
-
-void HandlePlayerPhysics_00D742(uint8 k, uint8 j) {  // 00d742
+////
+void HandlePlayerPhysics_00D742(uint8 k, uint8 j) {  // Función para manejar la física específica del jugador
   if (player_xspeed == kHandlePlayerPhysics_DATA_00D535[j] ||
       ((kHandlePlayerPhysics_DATA_00D535[j] ^ (player_xspeed - kHandlePlayerPhysics_DATA_00D535[j])) & 0x80) == 0) {
     HandlePlayerPhysics_00D76B();
   } else {
     int v2 = k >> 1;
     uint16 v3 = kHandlePlayerPhysics_MarioAccel[v2];
+
+    // Ajuste de la aceleración del jugador en función de condiciones específicas
     if (flag_ice_level) {
       if (!player_in_air_flag)
         v3 = kHandlePlayerPhysics_DATA_00D43D[v2];
@@ -4580,21 +4772,25 @@ void HandlePlayerPhysics_00D742(uint8 k, uint8 j) {  // 00d742
     *(uint16 *)&player_sub_xspeed = *(uint16 *)&player_sub_xspeed + v3;
   }
 }
-
-void HandlePlayerPhysics_00D764() {  // 00d764
+////
+void HandlePlayerPhysics_00D764() {  // Función para manejar la física del jugador cuando no está en el aire
   HandlePlayerPhysics_UpdatePMeter();
   if (!player_in_air_flag)
     HandlePlayerPhysics_00D76B();
 }
 
-void HandlePlayerPhysics_00D76B() {  // 00d76b
+
+void HandlePlayerPhysics_00D76B() {  // Función para manejar aspectos específicos de la física del jugador
   HandlePlayerPhysics_00D772(player_slope_player_is_on1 >> 2, player_slope_player_is_on1 >> 1);
 }
 
-void HandlePlayerPhysics_00D772(uint8 k, uint8 j) {  // 00d772
+
+void HandlePlayerPhysics_00D772(uint8 k, uint8 j) {  // Función para manejar la física específica del jugador
   uint16 v2;
   if ((int8)(player_xspeed - *((uint8 *)kHandlePlayerPhysics_DATA_00D5C9 + k + 1)) < 0)
     j += 2;
+
+  // Ajuste de la velocidad del jugador en función de diversas condiciones
   if (player_in_air_flag | timer_end_level || (v2 = kHandlePlayerPhysics_DATA_00D309[j >> 1], *(int16 *)&flag_underwater_level >= 0)) {
     v2 = kHandlePlayerPhysics_DATA_00D2CD[j >> 1];
   }
@@ -4604,13 +4800,18 @@ void HandlePlayerPhysics_00D772(uint8 k, uint8 j) {  // 00d772
     *(uint16 *)&player_sub_xspeed = kHandlePlayerPhysics_DATA_00D5C9[v3];
 }
 
-void HandlePlayerPhysics_InAir() {  // 00d7e4
+
+void HandlePlayerPhysics_InAir() {  // Función para manejar la física del jugador en el aire
   uint8 v0, v6;
+
+  // Si no está en la fase de vuelo con capa
   if (!player_cape_flying_phase) {
+    // Condiciones para manejar diferentes estados del jugador en el aire
     if (!player_in_air_flag || player_spin_jump_flag | (uint8)(player_riding_yoshi_flag | player_carrying_something_flag2) ||
-        (int8)player_sliding_on_ground > 0 || (player_sliding_on_ground = 0, player_current_power_up != 2) ||
-        (player_yspeed & 0x80) != 0 || !timer_wait_before_cape_flight_begins) {
+        (int8)player_sliding_on_ground > 0 || (player_sliding_on_ground = 0, player_current_power_up != 2) || (player_yspeed & 0x80) != 0 ||
+        !timer_wait_before_cape_flight_begins) {
 LABEL_43:
+      // Si está en el aire, ajuste de velocidad vertical y otros estados
       if (player_in_air_flag) {
         uint8 v5 = 0;
         if (player_riding_yoshi_flag && yoshi_yoshi_has_wings >> 1) {
@@ -4631,6 +4832,7 @@ LABEL_54:
           if (!timer_time_to_float_after_cape_flight) {
             if ((*(&io_controller_hold1 + v5) & 0x80) == 0) {
 LABEL_60:
+              // Si se cumplen las condiciones, manejo específico
               if (v6 == 2) {
                 HandlePlayerPhysics_D930(2);
                 return;
@@ -4649,12 +4851,15 @@ LABEL_60:
         }
       }
 LABEL_62:
+      // Si no se cumplen las condiciones anteriores, manejo genérico
       if ((io_controller_hold1 & 0x80) == 0)
         HandlePlayerPhysics_D930(0);
       else
         HandlePlayerPhysics_D930(1);
       return;
     }
+
+    // Configuración de estados cuando el jugador está en el aire
     player_ducking_flag = 0;
     player_in_air_flag = 11;
     player_furthest_cape_dive_stage = 0;
@@ -4662,6 +4867,8 @@ LABEL_62:
     v0 = 2;
     goto LABEL_21;
   }
+
+  // Manejo específico cuando está en la fase de vuelo con capa
   if (player_cape_flying_phase >= 2)
     HandlePlayerPhysics_00D94F();
   v0 = player_cape_glide_index;
@@ -4684,7 +4891,9 @@ LABEL_20:
     if (timer_change_diving_state)
       goto LABEL_27;
   }
+
 LABEL_21:
+  // Ajuste de parámetros cuando se mantiene presionado el botón de volar
   if ((io_controller_hold1 & 0x40) == 0)
     v0 = 4;
   if (player_cape_flying_phase != kHandlePlayerPhysics_DATA_00D7D4[v0]) {
@@ -4694,7 +4903,9 @@ LABEL_21:
       v2 = 2;
     timer_change_diving_state = v2;
   }
+
 LABEL_27:
+  // Actualización final de estados del vuelo con capa
   player_cape_glide_index = v0;
   uint8 v3 = player_cape_flying_phase;
   if (!player_cape_flying_phase)
@@ -4706,6 +4917,8 @@ LABEL_27:
   } else if (player_yspeed < 0xC8) {
     v4 = -56;
   }
+
+  // Ajuste final de velocidad vertical según las condiciones
   if (player_cape_flying_phase == 1) {
     if (!player_furthest_cape_dive_stage)
       goto LABEL_41;
@@ -4721,350 +4934,469 @@ LABEL_27:
 LABEL_41:
       v3 = 2;
   }
+
+  // Asignación final de la velocidad vertical del jugador
   player_yspeed = kHandlePlayerPhysics_DATA_00D7A5[v3 + 3] + v4;
 }
 
-void HandlePlayerPhysics_D930(uint8 j) {  // 00d930
+void HandlePlayerPhysics_D930(uint8 j) {  // Función para ajustar la velocidad vertical del jugador
   uint8 v1 = player_yspeed;
-  if ((player_yspeed & 0x80) == 0) {
-    if (player_yspeed >= kHandlePlayerPhysics_DATA_00D7AF[j])
+  if ((player_yspeed & 0x80) == 0) {                           // Si la velocidad no es negativa
+    if (player_yspeed >= kHandlePlayerPhysics_DATA_00D7AF[j])  // Ajuste de velocidad según los datos de la tabla
       v1 = kHandlePlayerPhysics_DATA_00D7AF[j];
-    if (player_in_air_flag && player_in_air_flag == 11)
-      player_in_air_flag = 36;
+    if (player_in_air_flag && player_in_air_flag == 11)  // Ajuste especial si está en el aire y la bandera de aire es 11
+      player_in_air_flag = 36;                           // Cambio de estado de bandera de aire
   }
-  player_yspeed = kHandlePlayerPhysics_DATA_00D7A5[j] + v1;
+  player_yspeed = kHandlePlayerPhysics_DATA_00D7A5[j] + v1;  // Asignación final de la velocidad vertical del jugador
 }
 
-void HandlePlayerPhysics_00D94F() {  // 00d94f
-  unusedram_7e140a = 0;
+void HandlePlayerPhysics_00D94F() {  // Función para manejar el estado de buceo más lejano con capa
+  unusedram_7e140a = 0;              // Reinicio de variable no usada
   uint8 v0 = player_yspeed;
-  if ((player_yspeed & 0x80) != 0)
-    v0 = 0;
+  if ((player_yspeed & 0x80) != 0)  // Si la velocidad es negativa
+    v0 = 0;                         // Ajuste de velocidad a cero
+  // Actualización del estado de buceo más lejano con capa basado en la velocidad actual
   if ((int8)(kHandlePlayerPhysics_DATA_00D7D9[v0 >> 3] - player_furthest_cape_dive_stage) < 0)
     player_furthest_cape_dive_stage = kHandlePlayerPhysics_DATA_00D7D9[v0 >> 3];
 }
 
-void HandlePlayerPhysics_UpdatePMeter() {  // 00d968
-  HandlePlayerPhysics_UpdatePMeterEx(0);
+void HandlePlayerPhysics_UpdatePMeter() {  // Función para actualizar el medidor de potencia del jugador
+  HandlePlayerPhysics_UpdatePMeterEx(0);   // Llama a la función extendida con parámetro cero
 }
 
-uint8 HandlePlayerPhysics_UpdatePMeterEx(uint8 j) {  // 00d96a
-  int8 v1 = kHandlePlayerPhysics_DATA_00D5EB[j] + player_pmeter;
+uint8 HandlePlayerPhysics_UpdatePMeterEx(uint8 j) {               // Función extendida para actualizar el medidor de potencia del jugador
+  int8 v1 = kHandlePlayerPhysics_DATA_00D5EB[j] + player_pmeter;  // Calcula el nuevo valor del medidor
   if (v1 < 0)
-    v1 = 0;
-  if ((uint8)v1 >= 0x70) {
-    j += 1;
-    v1 = 112;
+    v1 = 0;                 // Ajusta el mínimo a cero
+  if ((uint8)v1 >= 0x70) {  // Si supera el máximo permitido
+    j += 1;                 // Incrementa el índice
+    v1 = 112;               // Asigna un valor específico
   }
-  player_pmeter = v1;
-  return j;
+  player_pmeter = v1;  // Actualiza el valor del medidor de potencia del jugador
+  return j;            // Retorna el valor ajustado del índice
 }
 
-void HandlePlayerPhysics_Swimming() {  // 00d988
+////
+void HandlePlayerPhysics_Swimming() {  // Función para manejar la física del jugador cuando está nadando
   int8 v4;
-  player_sliding_on_ground = 0;
-  player_ducking_flag = 0;
-  player_cape_flying_phase = 0;
-  player_spin_jump_flag = 0;
-  uint8 v0 = player_yspeed;
-  if (player_carrying_something_flag2) {
-    if (player_in_air_flag || ((io_controller_press2 | io_controller_press1) & 0x80) == 0) {
-      if ((io_controller_hold1 & 4) == 0)
-        goto LABEL_7;
-    } else {
-      player_in_air_flag = 11;
-      player_sliding_on_ground = 0;
-      v0 = -16;
+  player_sliding_on_ground = 0;  // Reinicia la bandera de deslizamiento en el suelo
+  player_ducking_flag = 0;       // Reinicia la bandera de agacharse
+  player_cape_flying_phase = 0;  // Reinicia la fase de vuelo con capa
+  player_spin_jump_flag = 0;     // Reinicia la bandera de salto giratorio
+  uint8 v0 = player_yspeed;      // Obtiene la velocidad vertical actual del jugador
+
+  if (player_carrying_something_flag2) {  // Si el jugador está llevando algo
+    if (player_in_air_flag ||
+        ((io_controller_press2 | io_controller_press1) & 0x80) == 0) {  // Si está en el aire o no se está presionando ningún botón de salto
+      if ((io_controller_hold1 & 4) == 0)                               // Si no se está presionando el botón de agacharse
+        goto LABEL_7;                                                   // Salta a la etiqueta 7
+    } else {                                                            // Si está en el aire y se presiona un botón de salto
+      player_in_air_flag = 11;                                          // Establece la bandera de estar en el aire a 11
+      player_sliding_on_ground = 0;                                     // Reinicia la bandera de deslizamiento en el suelo
+      v0 = -16;                                                         // Ajusta la velocidad vertical a -16
     }
-    HandlePlayerPhysics_00DAA9();
-    v0 += 8;
+    HandlePlayerPhysics_00DAA9();  // Llama a una función específica de física del jugador
+    v0 += 8;                       // Ajusta la velocidad vertical sumándole 8
 LABEL_7:;
-    int8 v1 = v0 + 1;
-    if (!player_can_jump_out_of_water) {
-      --v1;
-      if ((counter_local_frames & 3) == 0)
-        v1 -= 2;
+    int8 v1 = v0 + 1;                       // Calcula un nuevo valor basado en la velocidad vertical
+    if (!player_can_jump_out_of_water) {    // Si no se puede saltar fuera del agua
+      --v1;                                 // Reducción de la velocidad
+      if ((counter_local_frames & 3) == 0)  // Si el contador de fotogramas locales es divisible por 3
+        v1 -= 2;                            // Ajuste adicional
     }
-    uint8 v2 = v1;
-    if ((int8)v1 < 0) {
-      if ((uint8)v1 < 0xF0)
-        v2 = -16;
-    } else if ((uint8)v1 >= 0x10) {
-      v2 = 16;
+    uint8 v2 = v1;                   // Asigna el nuevo valor a una variable temporal
+    if ((int8)v1 < 0) {              // Si el valor es negativo
+      if ((uint8)v1 < 0xF0)          // Si es menor que cierto valor
+        v2 = -16;                    // Ajuste a -16
+    } else if ((uint8)v1 >= 0x10) {  // Si es mayor o igual a cierto valor
+      v2 = 16;                       // Ajuste a 16
     }
-    player_yspeed = v2;
-    uint8 v3 = 0x80;
-    v4 = io_controller_hold1 & 3;
-    if ((io_controller_hold1 & 3) != 0)
-      goto LABEL_34;
-    v4 = player_facing_direction;
+    player_yspeed = v2;                  // Asigna la velocidad vertical del jugador
+    uint8 v3 = 0x80;                     // Establece un valor inicial para una variable
+    v4 = io_controller_hold1 & 3;        // Obtiene un valor basado en el estado del botón
+    if ((io_controller_hold1 & 3) != 0)  // Si se está presionando algún botón
+      goto LABEL_34;                     // Salta a la etiqueta 34
+    v4 = player_facing_direction;        // Obtiene la dirección en la que está mirando el jugador
 LABEL_33:
-    v3 = 120;
+    v3 = 120;  // Ajusta un valor específico
 LABEL_34:
-    player_facing_direction = v4 & 1;
-    uint8 v7 = 4 * (v4 & 1);
-    uint8 v8 = v3 | v4 & 1;
-    if (flag_layer3_tide_level)
-      v8 += 4;
-    uint8 v9 = v8;
-    if (player_in_air_flag)
-      v9 = v8 + 2;
-    HandlePlayerPhysics_00D742(v7, v9);
-    goto LABEL_43;
+    player_facing_direction = v4 & 1;    // Asigna la dirección de acuerdo a la condición
+    uint8 v7 = 4 * (v4 & 1);             // Calcula un valor basado en la dirección
+    uint8 v8 = v3 | v4 & 1;              // Realiza una operación lógica basada en la condición
+    if (flag_layer3_tide_level)          // Si existe un nivel de marea en la capa 3
+      v8 += 4;                           // Realiza un ajuste
+    uint8 v9 = v8;                       // Asigna el valor a una variable temporal
+    if (player_in_air_flag)              // Si el jugador está en el aire
+      v9 = v8 + 2;                       // Realiza un ajuste adicional
+    HandlePlayerPhysics_00D742(v7, v9);  // Llama a una función específica de física del jugador
+    goto LABEL_43;                       // Salta a la etiqueta 43
   }
-  if (((io_controller_press2 | io_controller_press1) & 0x80) != 0 && !player_can_jump_out_of_water) {
-    HandlePlayerPhysics_00DAA9();
-    if (!player_in_air_flag) {
-      player_in_air_flag = 11;
-      player_sliding_on_ground = 0;
-      v0 = -16;
+
+  if (((io_controller_press2 | io_controller_press1) & 0x80) != 0 &&
+      !player_can_jump_out_of_water) {  // Si se presiona algún botón de salto y no se puede saltar fuera del agua
+    HandlePlayerPhysics_00DAA9();       // Llama a una función específica de física del jugador
+    if (!player_in_air_flag) {          // Si no está en el aire
+      player_in_air_flag = 11;          // Establece la bandera de estar en el aire a 11
+      player_sliding_on_ground = 0;     // Reinicia la bandera de deslizamiento en el suelo
+      v0 = -16;                         // Ajusta la velocidad vertical a -16
     }
-    v0 -= 32;
+    v0 -= 32;  // Reducción de la velocidad vertical
   }
-  if ((counter_local_frames & 3) == 0)
-    v0 += 2;
-  uint8 v5 = (uint8)(io_controller_hold1 & 0xC) >> 2;
-  uint8 v6 = v0;
-  if ((v0 & 0x80) != 0) {
-    if (v0 < kHandlePlayerPhysics_SwimYSpeed[v5])
-      v6 = kHandlePlayerPhysics_SwimYSpeed[v5];
-  } else if (v0 >= 0x40) {
-    v6 = 64;
+
+  if ((counter_local_frames & 3) == 0)  // Si el contador de fotogramas locales es divisible por 3
+    v0 += 2;                            // Ajuste de la velocidad vertical sumándole 2
+
+  uint8 v5 = (uint8)(io_controller_hold1 & 0xC) >> 2;  // Calcula un valor basado en el estado de los botones
+  uint8 v6 = v0;                                       // Asigna la velocidad vertical a una variable temporal
+  if ((v0 & 0x80) != 0) {                              // Si la velocidad vertical es negativa
+    if (v0 < kHandlePlayerPhysics_SwimYSpeed[v5])      // Si es menor que un valor específico
+      v6 = kHandlePlayerPhysics_SwimYSpeed[v5];        // Asigna un valor específico
+  } else if (v0 >= 0x40) {                             // Si es mayor o igual a cierto valor
+    v6 = 64;                                           // Ajusta la velocidad vertical
   }
-  player_yspeed = v6;
-  if (player_in_air_flag || (io_controller_hold1 & 4) == 0) {
-    v4 = io_controller_hold1 & 3;
-    if ((io_controller_hold1 & 3) != 0)
-      goto LABEL_33;
-  } else {
-    flag_cape_to_sprite_interaction = 0;
-    ++player_ducking_flag;
+  player_yspeed = v6;  // Asigna la velocidad vertical del jugador
+
+  if (player_in_air_flag || (io_controller_hold1 & 4) == 0) {  // Si está en el aire o no se está presionando el botón de agacharse
+    v4 = io_controller_hold1 & 3;                              // Obtiene un valor basado en el estado del botón
+    if ((io_controller_hold1 & 3) != 0)                        // Si se está presionando algún botón
+      goto LABEL_33;                                           // Salta a la etiqueta 33
+  } else {                                                     // Si no está en el aire y se presiona el botón de agacharse
+    flag_cape_to_sprite_interaction = 0;                       // Reinicia una bandera específica
+    ++player_ducking_flag;                                     // Incrementa la bandera de agacharse
   }
-  uint8 v10 = 0;
-  if (flag_layer3_tide_level) {
-    v10 = 30;
-    if (!player_in_air_flag)
-      v10 = 32;
+
+  uint8 v10 = 0;                 // Asigna un valor inicial a una variable
+  if (flag_layer3_tide_level) {  // Si existe un nivel de marea en la capa 3
+    v10 = 30;                    // Asigna un valor específico
+    if (!player_in_air_flag)     // Si no está en el aire
+      v10 = 32;                  // Asigna un valor específico
   }
-  HandlePlayerPhysics_00D772(v10, 0);
+  HandlePlayerPhysics_00D772(v10, 0);  // Llama a una función específica de física del jugador
 LABEL_43:
-  CheckPowerUpSpecificPlayerAttacks();
-  SetPlayerPose();
-  if (!timer_active_cape_spin && player_in_air_flag) {
-    uint8 v11 = 24;
-    if (!timer_display_player_shoot_fireball_pose)
-      v11 = kHandlePlayerPhysics_SwimPoses[(player_anim_timer >> 2) & 3];
-    if (player_carrying_something_flag2)
-      ++v11;
-    player_current_pose = v11;
+  CheckPowerUpSpecificPlayerAttacks();                  // Realiza una verificación específica de ataques de poder del jugador
+  SetPlayerPose();                                      // Establece la pose del jugador
+  if (!timer_active_cape_spin && player_in_air_flag) {  // Si no está activo el temporizador de giro de capa y el jugador está en el aire
+    uint8 v11 = 24;                                     // Asigna un valor inicial
+    if (!timer_display_player_shoot_fireball_pose)      // Si no se muestra la pose de lanzamiento de bola de fuego del jugador
+      v11 = kHandlePlayerPhysics_SwimPoses[(player_anim_timer >> 2) &
+                                           3];  // Asigna un valor específico basado en el temporizador de animación del jugador
+    if (player_carrying_something_flag2)        // Si el jugador está llevando algo
+      ++v11;                                    // Incrementa un valor específico
+    player_current_pose = v11;                  // Asigna la pose actual del jugador
   }
 }
 
-void HandlePlayerPhysics_00DAA9() {  // 00daa9
-  io_sound_ch1 = 14;
-  player_anim_timer |= 0x10;
+void HandlePlayerPhysics_00DAA9() {  // Función para manejar la física específica cuando el jugador realiza una acción especial en el agua
+  io_sound_ch1 = 14;                 // Configura un canal de sonido específico
+  player_anim_timer |= 0x10;         // Establece una bandera en el temporizador de animación del jugador
 }
 
-void HandlePlayerPhysics_Climbing() {  // 00db17
-  uint8 v7;
-  player_in_air_flag = 0;
-  player_yspeed = 0;
-  player_cape_image = 0;
-  player_spin_jump_flag = 0;
-  uint8 j = timer_on_swinging_climbing_net_door;
-  if (j) {
-    uint8 v1 = sprites_player_xspeed_on_swinging_net_door;
-    if ((v1 & 0x80) != 0)
-      v1 = -v1;
-    uint8 k = v1;
-    if (j >= 0x1E) {
-      uint8 v3 = kHandlePlayerPhysics_DATA_00DADF[v1];
-      if ((sprites_player_xspeed_on_swinging_net_door & 0x80) != 0)
-        v3 = -v3;
-      player_xspeed = v3;
-      player_sub_xspeed = 0;
-      player_sub_xpos = 0;
+
+void HandlePlayerPhysics_Climbing() {  // Función para manejar la física del jugador cuando está escalando
+  uint8 v7;                            // Variable temporal
+
+  player_in_air_flag = 0;     // Reinicia la bandera de estar en el aire
+  player_yspeed = 0;          // Reinicia la velocidad vertical del jugador
+  player_cape_image = 0;      // Reinicia la imagen de la capa del jugador
+  player_spin_jump_flag = 0;  // Reinicia la bandera de salto giratorio
+
+  uint8 j = timer_on_swinging_climbing_net_door;  // Obtiene el valor del temporizador de red o puerta columpiante
+
+  if (j) {                                                  // Si el temporizador tiene un valor
+    uint8 v1 = sprites_player_xspeed_on_swinging_net_door;  // Obtiene la velocidad horizontal del jugador en la red o puerta columpiante
+
+    if ((v1 & 0x80) != 0)  // Si el bit más alto está activo
+      v1 = -v1;            // Invierte el valor
+
+    uint8 k = v1;  // Asigna un valor temporal
+
+    if (j >= 0x1E) {                                    // Si el temporizador es mayor o igual a cierto valor
+      uint8 v3 = kHandlePlayerPhysics_DATA_00DADF[v1];  // Obtiene un valor de datos específico basado en la velocidad horizontal
+
+      if ((sprites_player_xspeed_on_swinging_net_door & 0x80) != 0)  // Si el bit más alto de la velocidad horizontal está activo
+        v3 = -v3;                                                    // Invierte el valor
+
+      player_xspeed = v3;     // Asigna la velocidad horizontal al jugador
+      player_sub_xspeed = 0;  // Reinicia la velocidad horizontal secundaria
+      player_sub_xpos = 0;    // Reinicia la posición horizontal secundaria
     }
-    uint8 t = sprites_player_xspeed_on_swinging_net_door ^ (j < 8 ? 0x80 : 0);
-    uint16 v4 = kHandlePlayerPhysics_DATA_00DAF1[k];
-    if (!(t & 0x80))
-      v4 = -v4;
-    *(uint16 *)&player_sub_xspeed += v4;
-    uint8 v5 = player_facing_direction_on_net_door | (j >> 1) & 0xE;
-    uint8 v6 = kHandlePlayerPhysics_DATA_00DABD[v5];
-    if ((sprites_player_xspeed_on_swinging_net_door & 0x80) == 0)
-      v6 ^= 1;
-    player_facing_direction = v6;
-    v7 = kHandlePlayerPhysics_SwingOnNetDoorPoses[v5];
-    goto LABEL_15;
+
+    uint8 t = sprites_player_xspeed_on_swinging_net_door ^ (j < 8 ? 0x80 : 0);  // Realiza una operación XOR basada en el temporizador
+
+    uint16 v4 = kHandlePlayerPhysics_DATA_00DAF1[k];  // Obtiene un valor de datos específico basado en la velocidad horizontal
+
+    if (!(t & 0x80))  // Si el bit más alto no está activo
+      v4 = -v4;       // Invierte el valor
+
+    *(uint16 *)&player_sub_xspeed += v4;  // Ajusta la velocidad horizontal secundaria
+
+    uint8 v5 = player_facing_direction_on_net_door | (j >> 1) & 0xE;  // Calcula un valor basado en la dirección y el temporizador
+
+    uint8 v6 = kHandlePlayerPhysics_DATA_00DABD[v5];  // Obtiene un valor de datos específico basado en la dirección
+
+    if ((sprites_player_xspeed_on_swinging_net_door & 0x80) == 0)  // Si el bit más alto de la velocidad horizontal no está activo
+      v6 ^= 1;                                                     // Realiza una operación XOR
+
+    player_facing_direction = v6;  // Asigna la dirección al jugador
+
+    v7 = kHandlePlayerPhysics_SwingOnNetDoorPoses[v5];  // Obtiene una pose específica basada en la dirección
+    goto LABEL_15;                                      // Salta a la etiqueta 15
   }
-  player_xspeed = 0;
-  player_sub_xspeed = 0;
-  uint8 v8 = player_current_layer_priority;
-  if (timer_display_player_net_punch_pose) {
-    InitializeCapeSwingOrNetPunch(player_current_layer_priority + 2);
-    v7 = kHandlePlayerPhysics_NetPunchingPoses[v8];
+
+  player_xspeed = 0;      // Reinicia la velocidad horizontal del jugador
+  player_sub_xspeed = 0;  // Reinicia la velocidad horizontal secundaria
+
+  uint8 v8 = player_current_layer_priority;  // Obtiene la prioridad actual de la capa del jugador
+
+  if (timer_display_player_net_punch_pose) {                           // Si se está mostrando la pose de golpe de red
+    InitializeCapeSwingOrNetPunch(player_current_layer_priority + 2);  // Inicializa el golpe de red o el columpio de capa
+    v7 = kHandlePlayerPhysics_NetPunchingPoses[v8];                    // Obtiene una pose de golpe de red específica
 LABEL_15:
-    player_current_pose = v7;
-    return;
+    player_current_pose = v7;  // Asigna la pose actual del jugador
+    return;                    // Termina la función
   }
-  uint8 v9 = player_swimming_flag;
-  if ((io_controller_press1 & 0x80) != 0) {
-    player_in_air_flag = 11;
-    player_yspeed = kHandlePlayerPhysics_JumpFromVineYSpeed[player_swimming_flag];
-    io_sound_ch2 = 1;
+
+  uint8 v9 = player_swimming_flag;  // Obtiene la bandera de natación del jugador
+
+  if ((io_controller_press1 & 0x80) != 0) {                                         // Si se presiona el botón de salto
+    player_in_air_flag = 11;                                                        // Establece la bandera de estar en el aire a 11
+    player_yspeed = kHandlePlayerPhysics_JumpFromVineYSpeed[player_swimming_flag];  // Asigna una velocidad vertical específica basada en la
+                                                                                    // bandera de natación
+    io_sound_ch2 = 1;  // Configura un canal de sonido específico
 LABEL_29:
-    player_climbing_flag = 0;
-    return;
+    player_climbing_flag = 0;  // Reinicia la bandera de escalada
+    return;                    // Termina la función
   }
-  if ((io_controller_press1 & 0x40) && (player_climbing_flag & 0x80) != 0) {
-    io_sound_ch1 = 1;
-    player_facing_direction_on_net_door = v8;
-    player_facing_direction = ((uint8)(player_xpos & 8) >> 3) ^ 1;
-    timer_display_player_net_punch_pose = 8;
+
+  if ((io_controller_press1 & 0x40) &&
+      (player_climbing_flag & 0x80) != 0) {  // Si se presiona un botón específico y la bandera de escalada tiene el bit más alto activo
+    io_sound_ch1 = 1;                        // Configura un canal de sonido específico
+    player_facing_direction_on_net_door = v8;                       // Asigna la dirección de la puerta o red al jugador
+    player_facing_direction = ((uint8)(player_xpos & 8) >> 3) ^ 1;  // Calcula una dirección específica
+    timer_display_player_net_punch_pose = 8;                        // Configura un temporizador específico
   }
-  player_current_pose = kHandlePlayerPhysics_ClimbingPoses[v8];
-  if ((io_controller_hold1 & 3) != 0) {
-    int8 v10 = (uint8)(io_controller_hold1 & 3) >> 1;
-    if ((player_collision_var8b & 0x18) == 24)
-      goto LABEL_25;
-    if ((player_climbing_flag & 0x80) == 0)
-      goto LABEL_29;
-    if (v10 != player_collision_var8c)
+
+  player_current_pose =
+      kHandlePlayerPhysics_ClimbingPoses[v8];  // Obtiene una pose de escalada específica basada en la prioridad de la capa actual
+
+  if ((io_controller_hold1 & 3) != 0) {                // Si se está presionando algún botón específico
+    int8 v10 = (uint8)(io_controller_hold1 & 3) >> 1;  // Obtiene un valor específico basado en el estado de los botones
+
+    if ((player_collision_var8b & 0x18) == 24)  // Si se cumple una condición específica
+      goto LABEL_25;                            // Salta a la etiqueta 25
+
+    if ((player_climbing_flag & 0x80) == 0)  // Si la bandera de escalada no tiene el bit más alto activo
+      goto LABEL_29;                         // Salta a la etiqueta 29
+
+    if (v10 != player_collision_var8c)  // Si se cumple una condición específica
 LABEL_25:
-      player_xspeed = kHandlePlayerPhysics_ClimbingSpeed[(uint8)(player_swimming_flag | (2 * v10))];
+      player_xspeed =
+          kHandlePlayerPhysics_ClimbingSpeed[(uint8)(player_swimming_flag | (2 * v10))];  // Asigna una velocidad horizontal específica
+                                                                                          // basada en la bandera de natación y el valor
   }
-  uint8 v11 = io_controller_hold1 & 0xC;
-  if ((io_controller_hold1 & 0xC) != 0) {
-    if ((io_controller_hold1 & 8) == 0) {
-      int8 v12 = player_collision_var8b & 1;
-      player_collision_var8b >>= 1;
-      if (!v12)
-        goto LABEL_29;
-      goto LABEL_31;
+
+  uint8 v11 = io_controller_hold1 & 0xC;  // Obtiene un valor específico basado en el estado de los botones
+
+  if ((io_controller_hold1 & 0xC) != 0) {     // Si se están presionando algunos botones específicos
+    if ((io_controller_hold1 & 8) == 0) {     // Si el bit específico no está activo
+      int8 v12 = player_collision_var8b & 1;  // Obtiene un valor específico basado en una condición
+
+      player_collision_var8b >>= 1;  // Realiza un desplazamiento a la derecha
+
+      if (!v12)         // Si no se cumple una condición específica
+        goto LABEL_29;  // Salta a la etiqueta 29
+
+      goto LABEL_31;  // Salta a la etiqueta 31
     }
-    v9 += 2;
-    v11 = player_collision_var8b & 2;
-    if ((player_collision_var8b & 2) != 0) {
+
+    v9 += 2;                           // Incrementa un valor específico
+    v11 = player_collision_var8b & 2;  // Obtiene un valor específico basado en una condición
+
+    if ((player_collision_var8b & 2) != 0) {  // Si se cumple una condición específica
 LABEL_31:
-      if ((player_climbing_flag & 0x80) == 0)
-        player_xspeed = 0;
-      v11 = kHandlePlayerPhysics_ClimbingSpeed[v9];
-      player_yspeed = v11;
+      if ((player_climbing_flag & 0x80) == 0)  // Si la bandera de escalada no tiene el bit más alto activo
+        player_xspeed = 0;                     // Reinicia la velocidad horizontal del jugador
+
+      v11 = kHandlePlayerPhysics_ClimbingSpeed[v9];  // Obtiene una velocidad específica basada en el valor
+      player_yspeed = v11;                           // Asigna una velocidad vertical específica al jugador
     }
   }
-  if (player_xspeed | v11) {
-    player_anim_timer |= 8;
-    if ((player_anim_timer & 7) == 0)
-      player_facing_direction ^= 1;
+
+  if (player_xspeed | v11) {  // Si hay una velocidad horizontal o vertical
+    player_anim_timer |= 8;   // Establece un temporizador específico
+
+    if ((player_anim_timer & 7) == 0)  // Si se cumple una condición específica
+      player_facing_direction ^= 1;    // Realiza una operación XOR con la dirección del jugador
   }
 }
 
-void UpdatePlayerSpritePosition() {  // 00dc2d
-  uint8 tmp8a = player_yspeed;
-  if (player_wall_walk_status) {
-    uint8 v0 = player_xspeed;
-    player_yspeed = (player_wall_walk_status & 1) ? -v0 : v0;
-  }
-  uint16 tx = player_sub_xpos + (uint8)(player_xspeed * 16);
-  player_sub_xpos = tx;
-  player_xpos += ((int8)player_xspeed >> 4) + (tx >> 8);
+////
+void UpdatePlayerSpritePosition() {  // Función para actualizar la posición del sprite del jugador
+  uint8 tmp8a = player_yspeed;       // Almacena temporalmente la velocidad vertical actual del jugador
 
-  uint16 ty = player_sub_ypos + (uint8)(player_yspeed * 16);
-  player_sub_ypos = ty;
-  player_ypos += ((int8)player_yspeed >> 4) + (ty >> 8);
-  player_yspeed = tmp8a;
+  if (player_wall_walk_status) {  // Si el jugador está en estado de caminar por la pared
+    uint8 v0 = player_xspeed;     // Obtiene la velocidad horizontal actual del jugador
+
+    // Calcula la nueva velocidad vertical basada en el estado de caminar por la pared
+    player_yspeed =
+        (player_wall_walk_status & 1) ? -v0 : v0;  // Si el bit más bajo del estado está activo, invierte la velocidad horizontal
+  }
+
+  // Calcula la nueva posición horizontal del jugador
+  uint16 tx = player_sub_xpos + (uint8)(player_xspeed * 16);  // Calcula el desplazamiento horizontal basado en la velocidad horizontal
+  player_sub_xpos = tx;                                       // Actualiza la posición horizontal secundaria
+  player_xpos += ((int8)player_xspeed >> 4) + (tx >> 8);      // Actualiza la posición horizontal principal
+
+  // Calcula la nueva posición vertical del jugador
+  uint16 ty = player_sub_ypos + (uint8)(player_yspeed * 16);  // Calcula el desplazamiento vertical basado en la velocidad vertical
+  player_sub_ypos = ty;                                       // Actualiza la posición vertical secundaria
+  player_ypos += ((int8)player_yspeed >> 4) + (ty >> 8);      // Actualiza la posición vertical principal
+
+  player_yspeed = tmp8a;  // Restaura la velocidad vertical original del jugador
 }
 
-void PlayerDraw() {  // 00e2bd
+
+void PlayerDraw() {  // 00e2bd // Función para dibujar al jugador
   int8 v4;
+  // Si hay flags de ocultar el jugador, llama a una función relacionada con la representación gráfica
   if (player_hide_player_tile_flags != 0xFF)
     PlayerGFXRt_01EA70();
+  // Si hay un temporizador de ciclo de paleta del jugador, salta a LABEL_14
   if (timer_player_palette_cycle)
     goto LABEL_14;
   uint8 star = timer_star_power;
+  // Si hay poder de estrella activado
   if (timer_star_power) {
+    // Si no se está ocultando el jugador y el contador local de frames es divisible por 4, decrementa el temporizador de poder de estrella
     if (player_hide_player_tile_flags != 0xFF && (counter_local_frames & 3) == 0)
       --timer_star_power;
+    // Si star es mayor o igual a 0x1E
     if (star >= 0x1E) {
       if (star != 30) {
         v4 = (counter_global_frames & 3) + 4;
         goto LABEL_18;
       } else {
+        // Si misc_music_register_backup no es 0xFF, ajusta el registro de música
         if (misc_music_register_backup != 0xFF) {
           misc_music_register_backup &= ~0x80;
           uint8 t = misc_music_register_backup;
+          // Si hay temporizadores activos relacionados con sprites específicos, ajusta el canal de música
           if (spr45_directional_coins_despawn_timer | timer_silver_pswitch | timer_blue_pswitch)
             t = 14;
           io_music_ch1 = t;
         }
       }
     }
+/// Etiqueta LABEL_14:
+    /*
+Es una etiqueta utilizada para indicar un punto específico en el flujo del código al que se puede saltar usando una
+        instrucción goto.Primera instrucción en LABEL_14 :
+
+        v4 = (counter_global_frames >> 2 & 3) + 4;
+counter_global_frames:
+    Variable que probablemente cuenta el número de frames globales.>> 2
+        : Operador de desplazamiento a la derecha que divide el valor de counter_global_frames por 4(equivalente a counter_global_frames /
+                                                                                                     4)
+              .&
+        3 : Operador AND bit a bit que toma los 2 bits menos significativos del resultado anterior.Esto efectivamente hace que v4 tome
+                valores cíclicos entre 0 y 3. +
+            4 : Incrementa el resultado en 4,
+        haciendo que los valores cíclicos de v4 sean entre 4 y 7. Instrucción en el bloque else :
+
+        v4 = player_current_character | (2 * player_current_power_up);
+player_current_character:
+    Variable que contiene el ID del personaje actual.player_current_power_up : Variable que indica el tipo de power -
+            up que tiene el jugador.2 * player_current_power_up : Duplica el valor del power - up actual.|
+        : Operador OR bit a bit que combina los bits de player_current_character y 2 *
+          player_current_power_up.El resultado final de v4 será una combinación de los bits del personaje actual y su power -
+            up,
+        creando un valor único que representa ambos.
+este fragmento de código se utiliza para calcular un valor v4 que probablemente se usa para determinar la apariencia o comportamiento del jugador en el juego,
+dependiendo de si el jugador está en estado de "star power" o no.
+        */
 LABEL_14:
-    v4 = (counter_global_frames >> 2 & 3) + 4;
+    v4 = (counter_global_frames >> 2 & 3) + 4;  // Calcula el valor de v4 basado en los frames globales
   } else {
-    v4 = player_current_character | (2 * player_current_power_up);
+    v4 = player_current_character | (2 * player_current_power_up);  // Establece el valor de v4 según el personaje y el power-up actual
   }
-LABEL_18:
+
+LABEL_18:  // Asigna el puntero de paleta del jugador basado en v4
   pointer_player_palette = kPlayerGFXRt_PalettePointers[v4];
   uint8 v5 = player_current_pose;
   int8 v6 = player_wall_walk_status <= 5;
+  // Si player_wall_walk_status es mayor que 5, ajusta v6
   if (player_wall_walk_status > 5) {
     int8 v7 = player_wall_walk_status;
+    // Si no hay power-up actual o la pose actual del jugador es 19, ajusta v7
     if (!player_current_power_up || player_current_pose == 19)
       v7 = player_wall_walk_status ^ 1;
     v6 = v7 & 1;
   }
+  // Calcula la posición del jugador en la pantalla
   player_on_screen_pos_x = player_xpos - (!v6 + mirror_current_layer1_xpos);
   int16 v8 = player_ypos + player_relative_yposition_during_screen_shake;
   uint8 v9 = 1;
+  // Si no hay power-up actual, ajusta v8 y v9
   if (player_current_power_up < 1) {
     --v8;
     v9 = 0;
   }
   bool v10 = v5 >= 0xA;
+
+  // Si la pose actual es menor que 0xA, ajusta v10
   if (v5 < 0xA)
     v10 = v9 >= player_walking_frame;
+  // Calcula la posición vertical en pantalla del jugador
   uint16 v11 = v8 - (!v10 + mirror_current_layer1_ypos);
+  // Si la pose actual es 28, ajusta v11
   if (v5 == 28)
     v11 += 2;
   player_on_screen_pos_y = v11;
+  // Si no hay daño del jugador, o si el jugador está congelado o bloqueado, continúa
   if (!timer_player_hurt ||
       player_freeze_player_flag | (uint8)(flag_sprites_locked | timer_player_hurt & kPlayerGFXRt_DATA_00E292[timer_player_hurt >> 3])) {
     uint8 v12 = -56;
+    // Si la pose actual es 67, ajusta v12
     if (v5 == 67)
       v12 = -24;
     uint8 r4 = v12;
+    // Si la pose actual es 41 y no hay power-up actual, ajusta la pose actual del jugador
     if (v5 == 41 && !player_current_power_up)
       v5 = 32;
     uint8 r5 = kPlayerGFXRt_PlayerXYDispIndex[player_facing_direction | kPlayerGFXRt_PlayerXYDispIndexIndex[v5]];
     uint8 v13 = player_current_pose;
+    // Si la pose actual del jugador es menor que 0x3D, ajusta v13
     if (player_current_pose < 0x3D)
       v13 = kPlayerGFXRt_PowerupTilesetIndex[player_current_power_up] + player_current_pose;
     uint8 r6 = kPlayerGFXRt_TilesIndex[v13];
     uint8 r10 = kPlayerGFXRt_HeadTilePointerIndex[v13];
     uint8 r11 = kPlayerGFXRt_BodyTilePointerIndex[v13];
     uint8 v14 = sprites_tile_priority;
+    // Si hay prioridad de capa actual del jugador, ajusta v14
     if (player_current_layer_priority)
       v14 = kPlayerGFXRt_TilePriority[player_current_layer_priority - 1];
     uint8 v15 = kPlayerGFXRt_PlayerStartingOAMIndex[player_current_layer_priority];
     int8 v16 = kPlayerGFXRt_TileXFlip[player_facing_direction] | v14;
     OamEnt *oam = get_OamEnt(oam_buf, v15);
+    // Asigna las banderas de OAM para los sprites del jugador
     oam[64].flags = v16;
     oam[65].flags = v16;
     oam[67].flags = v16;
     oam[68].flags = v16;
     oam[62].flags = v16;
     oam[63].flags = v16;
+    // Si r4 es 0xE8, ajusta v16
     if (r4 == 0xE8)
       v16 ^= 0x40;
     oam[66].flags = v16;
+    // Llama a funciones relacionadas con la representación gráfica del jugador
     uint8 v18 = PlayerGFXRt_00E45D(v15, r4 & 0x80, r5 + 0, r6 + 0);
     uint8 v19 = PlayerGFXRt_00E45D(v18, r4 & 0x40, r5 + 2, r6 + 1);
     uint8 v20 = PlayerGFXRt_00E45D(v19, r4 & 0x20, r5 + 4, r6 + 2);
     uint8 v21 = PlayerGFXRt_00E45D(v20, r4 & 0x10, r5 + 6, r6 + 3);
     
     uint8 r12 = 0, r13 = 0;
+    // Si hay power-up actual del jugador
     if (player_current_power_up == 2) {
       uint8 j = v21;
       uint8 v22 = kPlayerGFXRt_DATA_00E18E[player_current_pose];
@@ -5072,6 +5404,7 @@ LABEL_18:
       uint8 r14 = kPlayerGFXRt_DATA_00E1D4[v22 + 4];
       r12 = kPlayerGFXRt_DATA_00E1D4[v22 + 1];
       uint8 v24;
+      // Si r12 es mayor o igual a 4, ajusta v24
       if (r12 >= 4) {
         v24 = kPlayerGFXRt_DATA_00E1D4[v22 + 2];
       } else {
@@ -5082,11 +5415,14 @@ LABEL_18:
       r5 = kPlayerGFXRt_CapeXYDispIndex[player_facing_direction | v24];
       player_hide_player_tile_flags |= kPlayerGFXRt_DATA_00E1D4[v22];
       uint8 r6 = 44;
+      // Si el bit más alto de r4 no está activo, llama a una función relacionada con la representación gráfica del jugador
       if (!(kPlayerGFXRt_DATA_00E1D4[v22] & 0x80))
         PlayerGFXRt_00E45D(j, r4 & 0x08, r5, r6++), r5 += 2, r4 <<= 1;
+      // Llama a funciones relacionadas con la representación gráfica del jugador
       uint8 v25 = PlayerGFXRt_00E45D(kPlayerGFXRt_CapeStartingOAMIndex[player_current_layer_priority], r4 & 0x08, r5, r6++);
       PlayerGFXRt_00E45D(v25, r4 & 0x04, r5 + 2, r14);
     }
+    // Llama a una función relacionada con la representación gráfica del jugador
     PlayerGFXRt_00F636(r10, r11, r12, r13);
   }
 }
@@ -5335,6 +5671,12 @@ const uint8 *GetSlopeSteepness() {
   return Unreachable(), NULL;
 }
 
+/*
+Esta función maneja las interacciones del jugador con los bloques en el juego, incluyendo la detección de colisiones, el ajuste de la
+posición y velocidad del jugador según la pendiente de los bloques, y la ejecución de acciones específicas basadas en la ID del bloque.
+Dependiendo del estado del jugador (por ejemplo, si está montado en Yoshi, si tiene un power-up, o si está en el aire), la función también
+puede activar subniveles, reproducir sonidos, y verificar si el jugador está tocando bloques dañinos.
+*/
 void RunPlayerBlockCode_EB77() {  // 00eb77
   unsigned int v3;
   unsigned int v10;
@@ -5342,25 +5684,38 @@ void RunPlayerBlockCode_EB77() {  // 00eb77
   int8 v14;
   uint8 v4;
 
+  // Inicializa la variable v0 a 0
   uint8 v0 = 0;
+  // Si el jugador tiene algún power-up y no está agachado, establece v0 a 24
   if (player_current_power_up && !player_ducking_flag)
     v0 = 24;
+  // Si el jugador está montado en Yoshi, incrementa v0 en 48
   if (player_riding_yoshi_flag)
     v0 += 48;
+  // Calcula la posición x del jugador dentro del bloque
   player_xpos_in_block = ((player_xpos & 0xF) + 8) & 0xF;
+  // Inicializa la dirección horizontal del bloque tocado por el jugador a 0
   player_hdir_block_touched = 0;
+  // Si la posición x del jugador dentro del bloque es mayor o igual a 8
   if ((player_xpos & 0xF) >= 8) {
     v0 += 12;
     ++player_hdir_block_touched;
   }
+  // Calcula la dirección vertical del jugador empujado fuera del bloque
   player_vdir_push_out_of_block = (*((uint8 *)kGetPlayerLevelCollisionMap16ID_DATA_00E89C + v0 + 6) + player_ypos_in_block) & 0xF;
+  // Obtiene la ID de colisión del nivel del jugador para la ejecución en la pared
   PairU16 wr = GetPlayerLevelCollisionMap16ID_WallRun(v0 += 2);
   int8 v2 = wr.first;
   v3 = wr.second;
+
+  // Si no hay colisión (v2 es 0)
   if (!v2) {
+    // Si la ID de colisión es 0x9C y el nivel tiene el tileset 1
     if ((uint8)v3 == 0x9C && misc_level_tileset_setting == 1) {
 LABEL_26:
+      // Si temp8f es 0 y el botón de abajo está presionado
       if (!temp8f && (io_controller_press1 & 8) != 0) {
+        // Reproduce sonido, incrementa los subniveles y cambia el estado del jugador
         io_sound_ch3 = 15;
         IncrementSublevelsEnteredAndPrepareToLoadSublevel();
         player_current_state = 13;
@@ -5368,174 +5723,238 @@ LABEL_26:
       }
       goto LABEL_30;
     }
+    // Si la ID de colisión no es 32
     if ((uint8)v3 != 32) {
+      // Si la ID de colisión no es 31
       if ((uint8)v3 != 31) {
+        // Si el temporizador del interruptor azul no está activo
         if (!timer_blue_pswitch)
           goto LABEL_29;
+        // Si la ID de colisión es 40
         if ((uint8)v3 == 40)
           goto LABEL_25;
+        // Si la ID de colisión no es 39
         if ((uint8)v3 != 39) {
 LABEL_29:
+          // Ejecuta código para el bloque específico
           RunPlayerBlockCode_00F28C(v3);
           goto LABEL_30;
         }
       }
+      // Si el jugador tiene algún power-up, salta a LABEL_30
       if (player_current_power_up)
         goto LABEL_30;
     }
 LABEL_25:
+    // Ejecuta código para el bloque específico y verifica colisiones
     if (RunPlayerBlockCode_00F443() & 1)
       goto LABEL_30;
     goto LABEL_26;
   }
+  // Si la ID de colisión es mayor o igual a 0x11
   if ((uint8)v3 >= 0x11) {
+    // Si la ID de colisión es menor a 0x6E
     if ((uint8)v3 < 0x6E) {
       v0 += 4;
       v4 = 0;
+      // Si la ID de colisión no es 30 ni 82
       if ((uint8)v3 != 30 && (uint8)v3 != 82)
         v4 = 2;
       goto LABEL_42;
     }
+    // Verifica si el jugador está en una pendiente de agua
     if (CheckWaterSlope(v3) & 1)
       player_collision_var8a |= 1;
   }
 LABEL_30:;
+  // Obtiene la siguiente ID de colisión del nivel del jugador para la ejecución en la pared
   PairU16 v5 = GetPlayerLevelCollisionMap16ID_WallRun(v0 += 2);
   uint8 second = v5.second;
+  // Si no hay colisión (v5.first es 0)
   if (!LOBYTE(v5.first)) {
+    // Ejecuta código para el bloque específico
     RunPlayerBlockCode_00F2C9(v5.second, 0x10);
     goto LABEL_35;
   }
+  // Si la ID de colisión es menor a 0x11 o mayor o igual a 0x6E
   if (LOBYTE(v5.second) < 0x11 || LOBYTE(v5.second) >= 0x6E) {
 LABEL_35:;
+    // Obtiene la siguiente ID de colisión del nivel del jugador para la ejecución en la pared
     PairU16 v7 = GetPlayerLevelCollisionMap16ID_WallRun(v0 += 2);
     second = v7.second;
+    // Si no hay colisión (v7.first es 0)
     if (!LOBYTE(v7.first)) {
+      // Ejecuta código para el bloque específico
       RunPlayerBlockCode_00F2C9(v7.second, 8);
       goto LABEL_45;
     }
+    // Si la ID de colisión es menor a 0x11 o mayor o igual a 0x6E
     if (LOBYTE(v7.second) < 0x11 || LOBYTE(v7.second) >= 0x6E)
       goto LABEL_45;
     goto LABEL_39;
   }
   v0 += 2;
 LABEL_39:
+  // Si el jugador no está mirando en la dirección del bloque tocado
   if (player_facing_direction != player_hdir_block_touched) {
+    // Verifica si el jugador está entrando en una tubería horizontal
     RunPlayerBlockCode_CheckIfEnteringHorizontalPipe(v0, second, player_facing_direction);
+    // Verifica si el jugador está agarrando un bloque lanzable
     RunPlayerBlockCode_CheckIfGrabbingThrowBlock(second);
   }
   player_anim_speed_index = 3;
   v4 = player_hdir_block_touched;
+  // Si la posición x del jugador dentro del bloque no coincide con el valor predefinido
   if ((player_xpos & 0xF) != kHandlePlayerLevelColl_DATA_00E911[player_hdir_block_touched]) {
 LABEL_42:
+    // Si el bloque no es un bloque de nota rebotante o el bloque procesado actualmente no es 82
     if (!blocks_note_block_bounce_flag || blocks_currently_processed_map16_tile_lo != 82) {
       uint8 t = kHandlePlayerLevelColl_DATA_00E90A[v4];
       player_blocked_flags |= t;
+      // Verifica si el jugador está tocando un bloque dañino
       RunPlayerBlockCode_CheckIfPlayerTouchingHurtBlock(blocks_currently_processed_map16_tile_lo, t & 3, true);
     }
   }
 LABEL_45:;
+  // Obtiene la siguiente ID de colisión del nivel del jugador para la ejecución en la pared
   PairU16 v8 = GetPlayerLevelCollisionMap16ID_WallRun(v0 += 2);
   int8 v9 = v8.first;
   v10 = v8.second;
   int8 v11 = v10;
+  // Si no hay colisión (v9 es 0)
   if (!v9) {
+    // Ejecuta código para el bloque específico
     RunPlayerBlockCode_00F2C2(v10, 2);
+    // Si la velocidad en y del jugador es no negativa o la ID del bloque procesado actualmente es menor a 0x21 o mayor o igual a 0x25
     if ((player_yspeed & 0x80) == 0 || blocks_currently_processed_map16_tile_lo < 0x21 ||
         blocks_currently_processed_map16_tile_lo >= 0x25) {
       goto LABEL_73;
     }
+    // Verifica si el bloque fue golpeado
     CheckIfBlockWasHit_Entry3(blocks_currently_processed_map16_tile_lo - 4, 0);
     goto LABEL_61;
   }
+  // Si la ID de colisión es menor a 0x11
   if ((uint8)v10 < 0x11)
     goto LABEL_73;
+  // Si la ID de colisión es mayor o igual a 0x6E
   if ((uint8)v10 >= 0x6E) {
+    // Si la ID de colisión es mayor o igual a 0xD8
     if ((uint8)v10 >= 0xD8) {
       blocks_ypos += 16;
+      // Obtiene la ID de colisión del nivel del jugador para la entrada 2
       PairU16 pair = GetPlayerLevelCollisionMap16ID_Entry2(v0);
       v11 = pair.second;
-      if (!LOBYTE(pair.first) || LOBYTE(pair.second) < 0x6E ||
-          LOBYTE(pair.second) >= 0xD8) {
+      // Si no hay colisión o la ID de colisión es menor a 0x6E o mayor o igual a 0xD8
+      if (!LOBYTE(pair.first) || LOBYTE(pair.second) < 0x6E || LOBYTE(pair.second) >= 0xD8) {
         goto LABEL_73;
       }
       player_vdir_push_out_of_block -= (LOBYTE(pair.second) < 0xD8) + 15;
     }
+    // Obtiene la inclinación de la pendiente
     const uint8 *slope_steepness = GetSlopeSteepness();
     v13 = 16 * slope_steepness[(uint8)(v11 - 110)];
     LOBYTE(v13) = player_xpos_in_block | v13;
     v14 = kSlopeDataTables_ShapeOfSlope[v13];
+    // Si la pendiente es negativa, salta a LABEL_62
     if (v14 >= 0)
       goto LABEL_73;
     goto LABEL_62;
   }
+  // Ejecuta código para el bloque específico
   v10 = RunPlayerBlockCode_00F3E9(2, v10);
+  // Verifica si el jugador está tocando un bloque dañino
   RunPlayerBlockCode_CheckIfPlayerTouchingHurtBlock(v10, 0, true);
+  // Si el bloque procesado actualmente no es 30
   if (blocks_currently_processed_map16_tile_lo != 30) {
 LABEL_61:
     v14 = -16;
 LABEL_62:;
+    // Calcula la nueva dirección vertical del jugador empujado fuera del bloque
     int8 v15 = player_vdir_push_out_of_block + v14;
+    // Si la nueva dirección vertical es no negativa
     if (v15 >= 0)
       goto LABEL_73;
+    // Si la nueva dirección vertical es mayor o igual a 0xF9 o el jugador está en el aire
     if ((uint8)v15 >= 0xF9 || player_in_air_flag) {
+      // Si el jugador está en el aire, ajusta la posición y del jugador
       if (player_in_air_flag) {
         player_ypos += (uint8)~v15;
       }
+      // Marca que el jugador está bloqueado
       player_blocked_flags |= 8;
     } else {
       player_blocked_flags = player_blocked_flags & 0xF4 | 9;
       player_xspeed = 0;
     }
   }
+  // Si la velocidad en y del jugador es negativa
   if ((player_yspeed & 0x80) != 0) {
     player_yspeed = 0;
+    // Si no hay sonido en el canal 1, reproduce sonido en el canal 1
     if (!io_sound_ch1)
       io_sound_ch1 = 1;
   }
 LABEL_73:;
+  // Obtiene la siguiente ID de colisión del nivel del jugador para la ejecución en la pared
   PairU16 v18 = GetPlayerLevelCollisionMap16ID_WallRun(v0 += 2);
   uint8 v19 = v18.second;
+  // Si no hay colisión (v18.first es 0)
   if (!LOBYTE(v18.first)) {
+    // Si la ID de colisión es 5, mata al jugador y desactiva los botones
     if (LOBYTE(v18.second) == 5)
       DamagePlayer_KillAndDisableButtons();
     else
+      // Ejecuta código para el bloque específico
       RunPlayerBlockCode_00F2C2(v18.second, 4);
     goto LABEL_95;
   }
+  // Si la ID de colisión es menor a 0x6E
   if (LOBYTE(v18.second) < 0x6E) {
+    // Ejecuta código para el bloque específico
     RunPlayerBlockCode_00F3E9(3, v18.second);
     goto LABEL_99;
   }
+  // Si la ID de colisión es mayor o igual a 0xD8
   if (LOBYTE(v18.second) >= 0xD8) {
+    // Si la ID de colisión es mayor o igual a 0xFB, mata al jugador y desactiva los botones
     if (LOBYTE(v18.second) >= 0xFB) {
       DamagePlayer_KillAndDisableButtons();
       return;
     }
     blocks_ypos -= 16;
+    // Obtiene la ID de colisión del nivel del jugador para la entrada 2
     PairU16 v20 = GetPlayerLevelCollisionMap16ID_Entry2(v0);
     v19 = v20.second;
+    // Si no hay colisión o la ID de colisión es menor a 0x6E o mayor o igual a 0xD8
     if (!LOBYTE(v20.first) || LOBYTE(v20.second) < 0x6E || LOBYTE(v20.second) >= 0xD8) {
 LABEL_95:;
+      // Obtiene la siguiente ID de colisión del nivel del jugador para la ejecución en la pared
       PairU16 v23 = GetPlayerLevelCollisionMap16ID_WallRun(v0 += 2);
+      // Si no hay colisión (v23.first es 0)
       if (!LOBYTE(v23.first)) {
+        // Ejecuta código para el bloque específico y código adicional
         RunPlayerBlockCode_00F309(v23.second);
         RunPlayerBlockCode_00EE1D();
         return;
       }
+      // Si la ID de colisión es mayor o igual a 0x6E
       if (LOBYTE(v23.second) >= 0x6E) {
 LABEL_106:
         RunPlayerBlockCode_00EE1D();
         return;
       }
 LABEL_99:
+      // Si la velocidad en y del jugador es negativa
       if ((player_yspeed & 0x80) != 0)
         return;
+      // Si el nivel no tiene el tileset 3 o 14 o el bloque procesado actualmente es menor a 0x59 o mayor o igual a 0x5C
       if (misc_level_tileset_setting != 3 && misc_level_tileset_setting != 14 || blocks_currently_processed_map16_tile_lo < 0x59 ||
           blocks_currently_processed_map16_tile_lo >= 0x5C) {
         uint8 v24 = player_ypos_in_block & 0xF;
         player_ypos_in_block = 0;
         player_vdir_push_out_of_block = v24;
+        // Si la nueva dirección vertical del jugador es menor a 8
         if (v24 < 8) {
           RunPlayerBlockCode_00EE3A();
           return;
@@ -5545,19 +5964,25 @@ LABEL_99:
     }
     player_ypos_in_block += (LOBYTE(v20.second) >= 0xD8) + 16;
   }
+  // Si el nivel tiene el tileset 3 o 14 y la ID de colisión es mayor o igual a 0xD2, salta a LABEL_95
   if ((misc_level_tileset_setting == 3 || misc_level_tileset_setting == 14) && v19 >= 0xD2)
     goto LABEL_95;
+  // Obtiene la inclinación de la pendiente
   const uint8 *slope_steepness = GetSlopeSteepness();
   uint8 k = slope_steepness[(uint8)(v19 - 110)];
   uint8 v22 = player_ypos_in_block - kSlopeDataTables_ShapeOfSlope[player_xpos_in_block | 16 * k];
+  // Si la nueva dirección vertical es negativa, incrementa el contador de suelo del jugador
   if ((v22 & 0x80) != 0)
     ++player_on_ground_flag;
+  // Si la nueva dirección vertical es menor a la distancia de ajuste a la pendiente del jugador
   if (v22 >= kSlopeDataTables_Player_SnapToSlopeDistance[k])
     goto LABEL_95;
   player_vdir_push_out_of_block = v22;
   player_ypos_in_block = 0;
+  // Si el código de retorno de RunPlayerBlockCode_00F005 se ejecuta dos veces
   if (RunPlayerBlockCode_00F005_ReturnsTwice(k))
     return;
+  // Si k es menor a 0x1C
   if (k < 0x1C) {
     RunPlayerBlockCode_00EFBC();
     RunPlayerBlockCode_00EE85(k);
@@ -5577,50 +6002,80 @@ void RunPlayerBlockCode_00EE1D() {  // 00ee1d
 }
 
 void RunPlayerBlockCode_00EE3A() {  // 00ee3a
+  // Si el tileset es 2 o 8 y el bloque procesado está en el rango 12-13
   if ((misc_level_tileset_setting == 2 || misc_level_tileset_setting == 8) && (uint8)(blocks_currently_processed_map16_tile_lo - 12) < 2) {
+    // Ejecuta código específico para estos bloques
     RunPlayerBlockCode_00EFCD(2 * (blocks_currently_processed_map16_tile_lo - 12));
   } else {
+    // Verifica si el jugador está intentando agarrar un bloque lanzable
     RunPlayerBlockCode_CheckIfGrabbingThrowBlock(blocks_currently_processed_map16_tile_lo);
+    // Si el bloque procesado es 30
     if (blocks_currently_processed_map16_tile_lo == 30) {
+      // Si el jugador está en el aire, tiene un power-up y está haciendo un salto giratorio
       if (temp8f && player_current_power_up && player_spin_jump_flag) {
+        // Verifica si el bloque fue golpeado
         CheckIfBlockWasHit_Entry3(0x21, 3);
+        // Ejecuta lógica específica para este caso
         RunPlayerBlockCode_00EE1D();
         return;
       }
     } else {
+      // Si el bloque procesado es 50
       if (blocks_currently_processed_map16_tile_lo == 50)
+        // Desactiva el bloque que puede ser creado/comido
         flag_active_create_eat_block = 0;
+      // Verifica si el jugador está tocando un bloque de daño
       RunPlayerBlockCode_CheckIfPlayerTouchingHurtBlock(blocks_currently_processed_map16_tile_lo, 3, false);
     }
   }
+  // Ejecuta lógica adicional para el bloque
   RunPlayerBlockCode_00EE85(0x20);
 }
 
+
 void RunPlayerBlockCode_00EE85(uint8 j) {  // 00ee85
+  // Si la velocidad en y del jugador es no negativa (hacia arriba) o temp8d es mayor o igual a 2
   if ((player_yspeed & 0x80) == 0 || temp8d >= 2) {
+    // Si el interruptor de palacio de color no está presionado
     if (!misc_color_of_palace_switch_pressed2) {
 LABEL_10:
+      // Ejecuta el código para el bloque específico
       RunPlayerBlockCode_00EED1(j);
       return;
     }
+    // Si el valor del interruptor de palacio es 1, 2 o 3 (pero no 0)
     if (((misc_color_of_palace_switch_pressed2 - 1) & 3) != 0) {
+      // Si el valor es 2 o 3
       if (((misc_color_of_palace_switch_pressed2 - 1) & 3) >= 2)
+        // Salta a la etiqueta LABEL_10
         goto LABEL_10;
+      // Desplaza la posición x del bloque 16 unidades a la izquierda
       blocks_xpos -= 16;
     }
+    // Calcula el índice del interruptor de palacio presionado
     uint8 v1 = (uint8)(misc_color_of_palace_switch_pressed2 - 1) >> 2;
+    // Si el interruptor de palacio no está activado
     if (!flag_activated_switches[v1]) {
+      // Marca el interruptor como activado
       flag_activated_switches[v1] = 1;
+      // Marca que se ha presionado un interruptor de palacio
       misc_color_of_palace_switch_pressed1 = 1;
+      // Establece el color del interruptor de palacio plano a generar
       sprites_color_of_flat_palace_switch_to_spawn = v1;
+      // Genera el interruptor de palacio plano
       RunPlayerBlockCode_SpawnFlatPalaceSwitch();
+      // Cambia la música
       io_music_ch1 = 12;
+      // Respalda el registro de música
       misc_music_register_backup = -1;
+      // Establece el temporizador para finalizar el nivel
       timer_end_level = 8;
     }
+    // Salta a la etiqueta LABEL_10
     goto LABEL_10;
   }
 }
+
 
 void RunPlayerBlockCode_00EED1(uint8 j) {  // 00eed1
   ++player_on_ground_flag;
@@ -5779,7 +6234,7 @@ void RunPlayerBlockCode_CheckIfPlayerTouchingHurtBlock(uint8 a, uint8 j, bool ig
     if (a == 47 ||
       a >= 0x59 && a < 0x5C && (misc_level_tileset_setting == 5 || misc_level_tileset_setting == 13) ||
       (a >= 0x59 && a < 0x5d || a >= 0x66 && a < 0x6A) && misc_level_tileset_setting == 1) {
-      DamagePlayer_Hurt();
+      DamagePlayer_Kill();
       return;
     }
   }
@@ -6150,7 +6605,8 @@ void PlayerState00_CheckPlayerPitFall() {  // 00f595
   }
 }
 
-void DamagePlayer_Hurt() {  // 00f5b7
+void DamagePlayer_Hurt(uint16 x, uint16 y)
+{  // 00f5b7
   if (!player_current_state && !(timer_end_level | (uint8)(timer_star_power | timer_player_hurt))) {
     counter_pink_berry_cloud_coins = 0;
     if (player_wall_walk_status)
@@ -6169,10 +6625,26 @@ void DamagePlayer_Hurt() {  // 00f5b7
         DamagePlayer_SetHurtAnimationTimer(0x2F);
       }
     } else {
-      DamagePlayer_Kill();
+      //DamagePlayer_Kill();
+      //  Calcular la dirección desde la cual el jugador está siendo golpeado
+      int16_t hdir = x - player_xpos;  // Dirección horizontal
+      int16_t vdir = y - player_ypos;  // Dirección vertical
+
+      // Ajustar la velocidad del jugador en consecuencia
+      uint8 kb = 60;
+      if (abs(hdir) > abs(vdir)) {
+        // El golpe es principalmente horizontal
+        player_xspeed = (hdir > 0) ? -kb : kb;
+        player_yspeed = -kb/2;                    
+      } else {
+        // El golpe es principalmente vertical
+        player_xspeed = (hdir > 0) ? -kb/2 : kb/2;  
+        player_yspeed = (vdir > 0) ? -kb : kb;  
+      }
     }
   }
 }
+
 
 void DamagePlayer_Kill() {  // 00f606
   player_yspeed = -112;

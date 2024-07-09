@@ -3392,7 +3392,7 @@ LABEL_27:
           uint8 v4 = spr_spriteid[k];
           v3 = v4 >= 0x53;
           if (v4 != 83)
-            DamagePlayer_Hurt();
+            DamagePlayer_Hurt(GetSprXPos(k), GetSprYPos(k));
         }
       }
       return v3;
@@ -4009,7 +4009,7 @@ void Spr016_VerticalCheepCheep(uint8 k) {  // 01b033
     goto LABEL_23;
   if (spr_table164a[k] && !timer_star_power) {
     if (!player_riding_yoshi_flag)
-      DamagePlayer_Hurt();
+      DamagePlayer_Hurt(GetSprXPos(k), GetSprYPos(k));
 LABEL_23:
     SprXXX_FixedMovementCheepCheep_01B10A(k);
     return;
@@ -6342,7 +6342,7 @@ void Spr029_KoopaKid_MortonRoyLudwig_01D2A8(uint8 k) {  // 01d2a8
             }
           }
         } else {
-          DamagePlayer_Hurt();
+          DamagePlayer_Hurt(GetSprXPos(k), GetSprYPos(k));
         }
       }
     }
@@ -7432,7 +7432,7 @@ void Spr030_ThrowingDryBones_01E5C4(uint8 k) {  // 01e5c4
     if ((int8)(player_current_ypos + 20 - spr_ypos_lo[k]) >= 0 || 
       !counter_consecutive_enemies_stomped && (player_yspeed & 0x80) != 0 ||
         spr_spriteid[k] == 49 && (uint8)(spr_decrementing_table1540[k] - 8) < 0x60) {
-      DamagePlayer_Hurt();
+      DamagePlayer_Hurt(GetSprXPos(k), GetSprYPos(k));
       if (!timer_player_hurt)
         SprXXX_Generic_Init_MakeSpriteFacePlayer(k);
     } else {
@@ -8876,7 +8876,7 @@ void Spr029_KoopaKid_IggyLarry_01FC62(uint8 k, PointU16 pt) {  // 01fc62
           if (!spr_decrementing_table154c[k])
             spr_decrementing_table154c[k] = 24;
         } else {
-          DamagePlayer_Hurt();
+          DamagePlayer_Hurt(GetSprXPos(k), GetSprYPos(k));
         }
       }
     } else {
